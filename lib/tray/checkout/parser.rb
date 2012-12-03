@@ -13,7 +13,7 @@ module Tray
       private
 
       def convert_to_hash(xml)
-        symbolize_all_keys!(Hash.from_xml(xml))[:transaction]
+        Hash.from_xml(xml).symbolize_all_keys![:transaction]
       end
 
       def success?(hash)
@@ -26,27 +26,6 @@ module Tray
 
       def errors(hash)
         hash[:error_response]
-      end
-
-      def symbolize_all_keys!(hash)
-        #TODO: Move to Hash class.
-        case
-        when hash.is_a?(Array)
-          puts "### Array #{hash}"
-          puts
-          hash.each { |value| symbolize_all_keys!(value) }
-        when hash.is_a?(Hash)
-          puts "$$$ Hash: #{hash}"
-          puts
-          hash.symbolize_keys!
-
-          hash.each_value do |value|
-            value.symbolize_keys! if value.is_a?(Hash)
-            symbolize_all_keys!(value)
-          end
-        end
-
-        hash
       end
     end
   end
