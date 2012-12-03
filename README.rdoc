@@ -7,6 +7,7 @@ Tray Checkout API
 === Gemfile
   gem 'tray-checkout'
 
+
 === Direct installation
   $ gem install tray-checkout
 
@@ -15,7 +16,56 @@ Tray Checkout API
 
   require 'tray-checkout'
 
-  t = Tray::Checkout::Transaction.new
+  transaction = Tray::Checkout::Transaction.new
+
+Get a transaction:
+  transaction.get "522045453u5uu32e0u8014f060uuu5uu"
+
+Create a transaction:
+  transaction.create(
+    token_account: "949u5uu9ef36f7u",
+    customer: {
+      name: "Pedro Bonamides",
+      cpf: "18565842673",
+      email: "pedro@bo.com.br",
+      contacts: [
+        { type_contact: "H",
+          number_contact: "1142360873"
+        }
+      ],
+      addresses: [
+        { type_address: "B",
+          street: "Avenida Pedro Alvares Cabral",
+          number: "123",
+          neighborhood: "Parque Ibirapuera",
+          postal_code: "04094050",
+          city: "São Paulo",
+          state: "SP"
+        }
+      ]
+    },
+    transaction: {
+      order_number: "R1238",
+      shipping_type: "Sedex",
+      shipping_price: 13.94,
+      url_notification: "http://prodis.blog.br/tray_notification"
+    },
+    transaction_product: [
+      { code: "LOGO-8278",
+        quantity: 2,
+        price_unit: 100.99,
+        description: "Logo Prodis"
+      },
+      { code: "LOGO-8296",
+        quantity: 1,
+        price_unit: 32.65,
+        description: "Logo Prodis em PNG"
+      }
+    ],
+    payment: {
+      payment_method_id: 6
+    }
+  )
 
 
 == Author

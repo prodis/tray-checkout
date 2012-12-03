@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'active_support/core_ext'
 require 'net/http'
 require 'uri'
 
@@ -24,7 +25,7 @@ module Tray
 
       def build_request(uri, params)
         request = Net::HTTP::Post.new(uri.path)
-        request.set_form_data(params)
+        request.body = params.to_param
         request
       end
     end

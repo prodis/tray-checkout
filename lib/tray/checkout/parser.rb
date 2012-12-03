@@ -10,6 +10,11 @@ module Tray
         success?(hash) ? data(hash) : errors(hash)
       end
 
+      def payment_params(hash)
+        #TODO
+        hash
+      end
+
       private
 
       def convert_to_hash(xml)
