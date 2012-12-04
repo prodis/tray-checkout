@@ -26,8 +26,19 @@ module Tray
       end
 
       def data
+        date_to_time!(@response[:data_response])
         @response[:data_response][:success] = true
         @response[:data_response]
+      end
+
+      def date_to_time!(hash)
+        hash.each do |key, value|
+          date_to_time!(value) if value.is_a?(Hash)
+
+          if key.to_s.starts_with?("date_") && value
+            hash[key] = (value.to_time rescue value) || value
+          end
+        end
       end
 
       def errors

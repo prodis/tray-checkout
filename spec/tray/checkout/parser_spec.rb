@@ -29,13 +29,18 @@ describe Tray::Checkout::Parser do
           shipping_type: "Sedex",
           shipping_price: 1.23,
           split: 1,
-          date_transaction: "2012-12-03T18:08:37", #TODO: DateTime
           url_notification: "http://prodis.blog.br/tray_notification",
           seller_token: "949u5uu9ef36f7u"
         }.each do |param, value|
           it param do
             result[:transaction][param].should == value
           end
+        end
+
+        it "date_transaction" do
+          date_transaction = result[:transaction][:date_transaction]
+          date_transaction.should be_a(Time)
+          date_transaction.to_s.should == "2012-12-03 18:08:37 UTC"
         end
       end
 
@@ -50,6 +55,12 @@ describe Tray::Checkout::Parser do
           it param do
             result[:transaction][:payment][param].should == value
           end
+        end
+
+        it "date_approval" do
+          date_approval = result[:transaction][:payment][:date_approval]
+          date_approval.should be_a(Time)
+          date_approval.to_s.should == "2012-12-04 00:55:15 UTC"
         end
       end
     end

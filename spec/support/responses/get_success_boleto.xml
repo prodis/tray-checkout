@@ -21,7 +21,7 @@
       <url_notification>http://prodis.blog.br/tray_notification</url_notification>
       <seller_token>949u5uu9ef36f7u</seller_token>
       <free nil="true"></free>
-      <date_payment></date_payment>
+      <date_payment>xxx</date_payment>
       <transaction_affiliates type="array"/>
       <schedule_credit></schedule_credit>
       <url_shipping nil="true"></url_shipping>
@@ -39,11 +39,11 @@
         <split type="integer">1</split>
         <number_proccess type="integer">718</number_proccess>
         <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu</url_payment>
+        <date_approval>2012-12-04T00:55:15</date_approval>
         <selling_message></selling_message>
         <payment_response></payment_response>
-        <date_payment></date_payment>
+        <date_payment>xxx</date_payment>
         <number_of_voucher_sales></number_of_voucher_sales>
-        <date_approval></date_approval>
         <card_id nil="true"></card_id>
       </payment>
       <products type="array">
