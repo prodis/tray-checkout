@@ -26,19 +26,22 @@ module Tray
       end
 
       def data
+        set_transaction_types!
+        set_payment_types!
         date_to_time!(@response[:data_response])
         @response[:data_response][:success] = true
         @response[:data_response]
       end
 
-      def date_to_time!(hash)
-        hash.each do |key, value|
-          date_to_time!(value) if value.is_a?(Hash)
+      def set_transaction_types!
+        transaction = @response[:data_response][:transaction]
+        transaction[:payment_method] = PAYMENT_METHOD.invert[transaction[:payment_method_id]]
+        transaction[:status] = TRANSACTION_STATUS.invert[transaction[:status_id]]
+      end
 
-          if key.to_s.starts_with?("date_") && value
-            hash[key] = (value.to_time rescue value) || value
-          end
-        end
+      def set_payment_types!
+        payment = @response[:data_response][:transaction][:payment]
+        payment[:payment_method] = PAYMENT_METHOD.invert[payment[:payment_method_id]]
       end
 
       def errors
@@ -50,6 +53,16 @@ module Tray
 
         error_response[:success] = false
         error_response
+      end
+
+      def date_to_time!(hash)
+        hash.each do |key, value|
+          date_to_time!(value) if value.is_a?(Hash)
+
+          if key.to_s.starts_with?("date_") && value
+            hash[key] = (value.to_time rescue value) || value
+          end
+        end
       end
     end
   end

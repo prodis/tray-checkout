@@ -16,9 +16,11 @@ describe Tray::Checkout::Parser do
       context "returns transaction" do
         { transaction_token: "522045453u5uu32e0u8014f060uuu5uu",
           transaction_id: 501,
-          payment_method_id: 6, #TODO: Symbol
+          payment_method: :boleto,
+          payment_method_id: 6,
           payment_method_name: "Boleto Bancario",
-          status_id: 4, #TODO: Symbol
+          status: :waiting_payment,
+          status_id: 4,
           status_name: "Aguardando Pagamento",
           order_number: "R1240",
           price_original: 213.21,
@@ -45,7 +47,8 @@ describe Tray::Checkout::Parser do
       end
 
       context "returns payment" do
-        { payment_method_id: 6,
+        { payment_method: :boleto,
+          payment_method_id: 6,
           payment_method_name: "Boleto Bancario",
           price_payment: 213.21,
           split: 1,
