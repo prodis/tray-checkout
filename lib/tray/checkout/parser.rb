@@ -5,7 +5,7 @@ module Tray
   module Checkout
     class Parser
       def response(xml)
-        puts xml
+        #puts xml
         hash = convert_to_hash(xml)
         success?(hash) ? data(hash) : errors(hash)
       end
