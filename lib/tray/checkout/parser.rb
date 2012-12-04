@@ -6,8 +6,8 @@ module Tray
     class Parser
       def response(xml)
         #puts xml
-        hash = convert_to_hash(xml)
-        success?(hash) ? data(hash) : errors(hash)
+        create_response_from(xml)
+        success? ? data : errors
       end
 
       def payment_params(hash)
@@ -17,20 +17,28 @@ module Tray
 
       private
 
-      def convert_to_hash(xml)
-        Hash.from_xml(xml).symbolize_all_keys![:transaction]
+      def create_response_from(xml)
+        @response = Hash.from_xml(xml).symbolize_all_keys![:transaction]
       end
 
-      def success?(hash)
-        hash[:message_response][:message] == "success"
+      def success?
+        @response[:message_response][:message] == "success"
       end
 
-      def data(hash)
-        hash[:data_response]
+      def data
+        @response[:data_response][:success] = true
+        @response[:data_response]
       end
 
-      def errors(hash)
-        hash[:error_response]
+      def errors
+        error_response = @response[:error_response]
+
+        if error_response[:validation_errors]
+          error_response[:errors] = error_response.delete(:validation_errors)
+        end
+
+        error_response[:success] = false
+        error_response
       end
     end
   end

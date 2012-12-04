@@ -8,7 +8,8 @@ end
 def body_for(response)
   case response
   when :get_success_boleto,
-       :get_failure_not_found
+       :get_failure_not_found,
+       :create_failure_validation_errors
     read_file_for(response)
   else
     response

@@ -2,35 +2,50 @@
 <transaction>
   <data_response>
     <transaction>
-      <sub_store nil="true"></sub_store>
+      <transaction_token>522045453u5uu32e0u8014f060uuu5uu</transaction_token>
+      <transaction_id type="integer">501</transaction_id>
+      <payment_method_id type="integer">6</payment_method_id>
+      <payment_method_name>Boleto Bancario</payment_method_name>
       <status_id type="integer">4</status_id>
+      <status_name>Aguardando Pagamento</status_name>
+      <order_number>R1240</order_number>
+      <price_original type="decimal">213.21</price_original>
+      <price_payment type="decimal">213.21</price_payment>
+      <price_seller type="decimal">199.19</price_seller>
+      <price_additional type="decimal">0.0</price_additional>
+      <price_discount type="decimal">0.0</price_discount>
+      <shipping_type>Sedex</shipping_type>
+      <shipping_price type="decimal">1.23</shipping_price>
+      <split type="integer">1</split>
+      <date_transaction>2012-12-03T18:08:37</date_transaction>
+      <url_notification>http://prodis.blog.br/tray_notification</url_notification>
+      <seller_token>949u5uu9ef36f7u</seller_token>
+      <free nil="true"></free>
+      <date_payment></date_payment>
+      <transaction_affiliates type="array"/>
+      <schedule_credit></schedule_credit>
+      <url_shipping nil="true"></url_shipping>
+      <url_process nil="true"></url_process>
+      <url_cancel nil="true"></url_cancel>
+      <url_stock nil="true"></url_stock>
+      <url_success nil="true"></url_success>
+      <url_css nil="true"></url_css>
+      <available_payment_methods nil="true"></available_payment_methods>
+      <sub_store nil="true"></sub_store>
       <payment>
-        <number_of_voucher_sales></number_of_voucher_sales>
-        <number_proccess type="integer">718</number_proccess>
+        <payment_method_id type="integer">6</payment_method_id>
         <payment_method_name>Boleto Bancario</payment_method_name>
+        <price_payment type="decimal">213.21</price_payment>
+        <split type="integer">1</split>
+        <number_proccess type="integer">718</number_proccess>
+        <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu</url_payment>
         <selling_message></selling_message>
         <payment_response></payment_response>
         <date_payment></date_payment>
-        <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/f9bfe8731319b59e3073a9011de6b6db</url_payment>
-        <payment_method_id type="integer">6</payment_method_id>
-        <split type="integer">1</split>
+        <number_of_voucher_sales></number_of_voucher_sales>
         <date_approval></date_approval>
         <card_id nil="true"></card_id>
-        <price_payment type="decimal">213.21</price_payment>
       </payment>
-      <payment_method_name>Boleto Bancario</payment_method_name>
-      <price_seller type="decimal">199.19</price_seller>
-      <url_stock nil="true"></url_stock>
-      <date_transaction>2012-12-03T18:08:37</date_transaction>
-      <order_number>R1240</order_number>
-      <url_notification>http://prodis.blog.br/tray_notification</url_notification>
-      <free nil="true"></free>
-      <url_cancel nil="true"></url_cancel>
-      <seller_token>949u5uu9ef36f7u</seller_token>
-      <date_payment></date_payment>
-      <shipping_price type="decimal">1.23</shipping_price>
-      <url_shipping nil="true"></url_shipping>
-      <transaction_id type="integer">501</transaction_id>
       <products type="array">
         <product>
           <code>LOGO-8278</code>
@@ -62,12 +77,6 @@
         <name>Bo Company</name>
         <business_name>Bo Company</business_name>
       </company>
-      <price_original type="decimal">213.21</price_original>
-      <url_process nil="true"></url_process>
-      <status_name>Aguardando Pagamento</status_name>
-      <transaction_affiliates type="array"/>
-      <shipping_type>Sedex</shipping_type>
-      <payment_method_id type="integer">6</payment_method_id>
       <customer>
         <address>
           <number>123</number>
@@ -94,15 +103,6 @@
         <token>6buu8f3uu85u567</token>
         <name>Pedro Bonamides</name>
       </customer>
-      <price_additional type="decimal">0.0</price_additional>
-      <split type="integer">1</split>
-      <price_discount type="decimal">0.0</price_discount>
-      <schedule_credit></schedule_credit>
-      <url_success nil="true"></url_success>
-      <transaction_token>522045453u5uu32e0u8014f060uuu5uu</transaction_token>
-      <price_payment type="decimal">213.21</price_payment>
-      <url_css nil="true"></url_css>
-      <available_payment_methods nil="true"></available_payment_methods>
     </transaction>
   </data_response>
   <message_response>
