@@ -37,7 +37,7 @@ module Tray
       delivery: "D"
     }
 
-    GENDER = {
+    SEX = {
       male: "M",
       female: "F"
     }

@@ -32,7 +32,7 @@ Getting an existing transaction:
   result[:date_transaction].strftime("%d/%m/%Y") # => "03/12/2012"
 
 When the transaction is not found:
-  result = transaction.get("xxxxx")
+  result = transaction.get("xxxxx00000yyyy")
   result[:success]                # => false
   result[:transaction_id]         # => nil
   result[:errors].first[:code]    # => "003042"
@@ -45,13 +45,15 @@ Creating a successful transaction:
       name: "Pedro Bonamides",
       cpf: "18565842673",
       email: "pedro@bo.com.br",
+      sex: :male,
+      marital_status: :single,
       contacts: [
-        { type_contact: "H",
+        { contact_type: :home,
           number_contact: "1142360873"
         }
       ],
       addresses: [
-        { type_address: "B",
+        { address_type: :billing,
           street: "Avenida Pedro Alvares Cabral",
           number: "123",
           neighborhood: "Parque Ibirapuera",
@@ -80,7 +82,7 @@ Creating a successful transaction:
       }
     ],
     payment: {
-      payment_method_id: 4,
+      payment_method: :mastercard,
       split: 3,
       card_name: "ZEFINHA NOCEGA",
       card_number: "5105105105105100",
@@ -89,6 +91,16 @@ Creating a successful transaction:
       card_cvv: "123"
     }
   )
+  result[:success]             # => true
+  result[:transaction_token]   # => "87654321u5uu92e4u09876543uuu5uu"
+  result[:transaction_id]      # => 503
+  result[:status]              # => :approved
+  result[:status_name]         # => "Aprovada"
+  result[:payment_method]      # => :mastercard
+  result[:payment_method_name] # => "Mastercard"
+  result[:price_payment]       # => 213.21
+  result[:price_seller]        # => 199.19
+  result[:date_payment].strftime("%d/%m/%Y") # => "05/12/2012"
 
 
 == Author

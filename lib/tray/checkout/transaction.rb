@@ -10,7 +10,7 @@ module Tray
       end
 
       def create(params)
-        response = web_service.request!("#{URL}/pay_complete", parser.payment_params(params))
+        response = web_service.request!("#{URL}/pay_complete", parser.payment_params!(params))
         parser.response(response)
       end
 
