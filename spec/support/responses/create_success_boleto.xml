@@ -1,0 +1,284 @@
+<transaction>
+  <data_response>
+    <payment>
+      <number_of_voucher_sales></number_of_voucher_sales>
+      <number_proccess type="integer">721</number_proccess>
+      <payment_method_name>Boleto Bancario</payment_method_name>
+      <selling_message></selling_message>
+      <payment_response></payment_response>
+      <date_payment></date_payment>
+      <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/u84uu45u1uuuu7uuu80u2uuu3u5831u8</url_payment>
+      <payment_method_id type="integer">6</payment_method_id>
+      <split type="integer">1</split>
+      <date_approval></date_approval>
+      <card_id></card_id>
+      <price_payment type="decimal">213.21</price_payment>
+      <linha_digitavel>34191.76007 00072.101140 53021.450001 4 55420000021321</linha_digitavel>
+    </payment>
+    <session_id nil="true"></session_id>
+    <transaction>
+      <sub_store nil="true"></sub_store>
+      <status_id type="integer">4</status_id>
+      <payment>
+        <number_of_voucher_sales></number_of_voucher_sales>
+        <number_proccess type="integer">721</number_proccess>
+        <payment_method_name>Boleto Bancario</payment_method_name>
+        <selling_message></selling_message>
+        <payment_response></payment_response>
+        <date_payment></date_payment>
+        <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/u84uu45u1uuuu7uuu80u2uuu3u5831u8</url_payment>
+        <payment_method_id type="integer">6</payment_method_id>
+        <split type="integer">1</split>
+        <date_approval></date_approval>
+        <card_id nil="true"></card_id>
+        <price_payment type="decimal">213.21</price_payment>
+      </payment>
+      <payment_method_name>Boleto Bancario</payment_method_name>
+      <price_seller type="decimal">199.19</price_seller>
+      <url_stock nil="true"></url_stock>
+      <date_transaction>2012-12-03T18:08:37</date_transaction>
+      <order_number>R1240</order_number>
+      <url_notification>http://prodis.blog.br/tray_notification</url_notification>
+      <free nil="true"></free>
+      <url_cancel nil="true"></url_cancel>
+      <seller_token>949u5uu9ef36f7u</seller_token>
+      <date_payment></date_payment>
+      <shipping_price type="decimal">1.23</shipping_price>
+      <url_shipping nil="true"></url_shipping>
+      <transaction_id type="integer">501</transaction_id>
+      <products type="array">
+        <product>
+          <code>LOGO-8278</code>
+          <url_img nil="true"></url_img>
+          <quantity type="decimal">2.0</quantity>
+          <description>Logo Prodis</description>
+          <extra nil="true"></extra>
+          <sku_code nil="true"></sku_code>
+          <price_unit type="decimal">100.99</price_unit>
+        </product>
+        <product>
+          <code>877</code>
+          <url_img nil="true"></url_img>
+          <quantity type="decimal">1.0</quantity>
+          <description>Outro produto</description>
+          <extra nil="true"></extra>
+          <sku_code nil="true"></sku_code>
+          <price_unit type="decimal">10.0</price_unit>
+        </product>
+      </products>
+      <company>
+        <cnpj>22132477000163</cnpj>
+        <trade_name>Bo Company</trade_name>
+        <cpf>12345678909</cpf>
+        <url></url>
+        <company_name>Bo Company</company_name>
+        <token>949u5uu9ef36f7u</token>
+        <contact>1152360873</contact>
+        <name>Bo Company</name>
+        <business_name>Bo Company</business_name>
+      </company>
+      <price_original type="decimal">213.21</price_original>
+      <url_process nil="true"></url_process>
+      <status_name>Aguardando Pagamento</status_name>
+      <transaction_affiliates type="array"/>
+      <shipping_type>Sedex</shipping_type>
+      <payment_method_id type="integer">6</payment_method_id>
+      <customer>
+        <address>
+          <number>123</number>
+          <completion></completion>
+          <city>S&#227;o Paulo</city>
+          <postal_code>04094050</postal_code>
+          <state>SP</state>
+          <street>Avenida Pedro Alvares Cabral</street>
+          <neighborhood>Parque Ibirapuera</neighborhood>
+        </address>
+        <cpf>18565842673</cpf>
+        <addresses type="array">
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+          </address>
+        </addresses>
+        <email>pedro@bo.com.br</email>
+        <token>6baa8f3cc85c567</token>
+        <name>Pedro Bonamides</name>
+      </customer>
+      <price_additional type="decimal">0.0</price_additional>
+      <split type="integer">1</split>
+      <price_discount type="decimal">0.0</price_discount>
+      <schedule_credit></schedule_credit>
+      <url_success nil="true"></url_success>
+      <transaction_token>u1244u7uu6bu20123uu342uu87u0uuu5</transaction_token>
+      <price_payment type="decimal">213.21</price_payment>
+      <url_css nil="true"></url_css>
+      <available_payment_methods nil="true"></available_payment_methods>
+    </transaction>
+    <customer>
+      <company>
+      </company>
+      <account>
+        <payment_tax_id type="integer">1</payment_tax_id>
+        <url_notification nil="true"></url_notification>
+        <available_balance type="decimal">0.0</available_balance>
+        <token>6baa8f3cc85c567</token>
+        <name>Principal</name>
+        <balance type="decimal">0.0</balance>
+      </account>
+      <person>
+        <birth_date type="date">1975-05-19</birth_date>
+        <person_id type="integer">157</person_id>
+        <cpf>18565842673</cpf>
+        <addresses type="array">
+          <address>
+            <number>123</number>
+            <completion>Bloco II</completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">324</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">true</primary>
+            <street>Avenida Pedro &#193;lvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion>Bloco II</completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">328</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro &#193;lvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">331</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro &#193;lvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">337</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">338</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">339</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">340</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">341</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+          <address>
+            <number>123</number>
+            <completion></completion>
+            <city>S&#227;o Paulo</city>
+            <person_address_id type="integer">342</person_address_id>
+            <postal_code>04094050</postal_code>
+            <state>SP</state>
+            <primary type="boolean">false</primary>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <type_address>B</type_address>
+          </address>
+        </addresses>
+        <email>pedro@bo.com.br</email>
+        <contacts type="array">
+          <contact>
+            <person_contact_id type="integer">345</person_contact_id>
+            <value>1137654321</value>
+            <primary type="boolean">true</primary>
+            <type_contact>H</type_contact>
+          </contact>
+          <contact>
+            <person_contact_id type="integer">346</person_contact_id>
+            <value>pedro@bo.com.br</value>
+            <primary type="boolean">false</primary>
+            <type_contact>E</type_contact>
+          </contact>
+          <contact>
+            <person_contact_id type="integer">348</person_contact_id>
+            <value>1147654321</value>
+            <primary type="boolean">false</primary>
+            <type_contact>H</type_contact>
+          </contact>
+          <contact>
+            <person_contact_id type="integer">361</person_contact_id>
+            <value>1142360873</value>
+            <primary type="boolean">false</primary>
+            <type_contact>H</type_contact>
+          </contact>
+        </contacts>
+        <relationship>M</relationship>
+        <name>Pedro Bonamides</name>
+        <gender>M</gender>
+        <type_person_id>1</type_person_id>
+      </person>
+    </customer>
+  </data_response>
+  <message_response>
+    <message>success</message>
+  </message_response>
+</transaction>

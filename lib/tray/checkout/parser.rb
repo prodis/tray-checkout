@@ -26,21 +26,21 @@ module Tray
       end
 
       def data
-        set_transaction_types!
-        set_payment_types!
-        date_to_time!(@response[:data_response])
-        @response[:data_response][:success] = true
-        @response[:data_response]
+        data_response = @response[:data_response][:transaction]
+        set_transaction_types! data_response
+        set_payment_types! data_response
+        date_to_time! data_response
+        data_response[:success] = true
+        data_response
       end
 
-      def set_transaction_types!
-        transaction = @response[:data_response][:transaction]
+      def set_transaction_types!(transaction)
         transaction[:payment_method] = PAYMENT_METHOD.invert[transaction[:payment_method_id]]
         transaction[:status] = TRANSACTION_STATUS.invert[transaction[:status_id]]
       end
 
-      def set_payment_types!
-        payment = @response[:data_response][:transaction][:payment]
+      def set_payment_types!(transaction)
+        payment = transaction[:payment]
         payment[:payment_method] = PAYMENT_METHOD.invert[payment[:payment_method_id]]
       end
 

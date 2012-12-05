@@ -35,12 +35,12 @@ describe Tray::Checkout::Parser do
           seller_token: "949u5uu9ef36f7u"
         }.each do |param, value|
           it param do
-            result[:transaction][param].should == value
+            result[param].should == value
           end
         end
 
         it "date_transaction" do
-          date_transaction = result[:transaction][:date_transaction]
+          date_transaction = result[:date_transaction]
           date_transaction.should be_a(Time)
           date_transaction.to_s.should == "2012-12-03 18:08:37 UTC"
         end
@@ -56,12 +56,12 @@ describe Tray::Checkout::Parser do
           url_payment: "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
         }.each do |param, value|
           it param do
-            result[:transaction][:payment][param].should == value
+            result[:payment][param].should == value
           end
         end
 
         it "date_approval" do
-          date_approval = result[:transaction][:payment][:date_approval]
+          date_approval = result[:payment][:date_approval]
           date_approval.should be_a(Time)
           date_approval.to_s.should == "2012-12-04 00:55:15 UTC"
         end
