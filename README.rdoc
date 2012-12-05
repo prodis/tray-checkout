@@ -19,27 +19,27 @@ Tray Checkout API
   transaction = Tray::Checkout::Transaction.new
 
 Getting an existing transaction:
-  result = transaction.get("522045453u5uu32e0u8014f060uuu5uu")
-  result[:success]               # => true
-  result[:transaction_token]     # => "522045453u5uu32e0u8014f060uuu5uu"
-  result[:transaction_id]        # => 501
-  result[:status]                # => :waiting_payment
-  result[:payment_method]        # => :boleto
-  result[:price_payment]         # => 213.21
-  result[:price_seller]          # => 199.19
-  result[:split]                 # => 1
-  result[:payment][:url_payment] # => "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
-  result[:date_transaction].strftime("%d/%m/%Y") # => "03/12/2012"
+  txn = transaction.get("522045453u5uu32e0u8014f060uuu5uu")
+  txn[:success]               # => true
+  txn[:transaction_token]     # => "522045453u5uu32e0u8014f060uuu5uu"
+  txn[:transaction_id]        # => 501
+  txn[:status]                # => :waiting_payment
+  txn[:payment_method]        # => :boleto
+  txn[:price_payment]         # => 213.21
+  txn[:price_seller]          # => 199.19
+  txn[:split]                 # => 1
+  txn[:payment][:url_payment] # => "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
+  txn[:date_transaction].strftime("%d/%m/%Y") # => "03/12/2012"
 
 When the transaction is not found:
-  result = transaction.get("xxxxx00000yyyy")
-  result[:success]                # => false
-  result[:transaction_id]         # => nil
-  result[:errors].first[:code]    # => "003042"
-  result[:errors].first[:message] # => "Transação não encontrada"
+  txn = transaction.get("xxxxx00000yyyy")
+  txn[:success]                # => false
+  txn[:transaction_id]         # => nil
+  txn[:errors].first[:code]    # => "003042"
+  txn[:errors].first[:message] # => "Transação não encontrada"
 
 Creating a successful transaction:
-  result = transaction.create(
+  txn = transaction.create(
     token_account: "949u5uu9ef36f7u",
     customer: {
       name: "Pedro Bonamides",
@@ -91,16 +91,16 @@ Creating a successful transaction:
       card_cvv: "123"
     }
   )
-  result[:success]             # => true
-  result[:transaction_token]   # => "87654321u5uu92e4u09876543uuu5uu"
-  result[:transaction_id]      # => 503
-  result[:status]              # => :approved
-  result[:status_name]         # => "Aprovada"
-  result[:payment_method]      # => :mastercard
-  result[:payment_method_name] # => "Mastercard"
-  result[:price_payment]       # => 213.21
-  result[:price_seller]        # => 199.19
-  result[:date_payment].strftime("%d/%m/%Y") # => "05/12/2012"
+  txn[:success]             # => true
+  txn[:transaction_token]   # => "87654321u5uu92e4u09876543uuu5uu"
+  txn[:transaction_id]      # => 503
+  txn[:status]              # => :approved
+  txn[:status_name]         # => "Aprovada"
+  txn[:payment_method]      # => :mastercard
+  txn[:payment_method_name] # => "Mastercard"
+  txn[:price_payment]       # => 213.21
+  txn[:price_seller]        # => 199.19
+  txn[:date_payment].strftime("%d/%m/%Y") # => "05/12/2012"
 
 
 == Author

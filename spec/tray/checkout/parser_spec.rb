@@ -7,10 +7,10 @@ describe Tray::Checkout::Parser do
   describe "#response" do
     context "with success response" do
       let(:xml) { body_for :get_success_boleto }
-      let(:result) { parser.response(xml) }
+      let(:txn) { parser.response(xml) }
 
       it "returns success" do
-        result[:success].should be_true
+        txn[:success].should be_true
       end
 
       context "returns transaction" do
@@ -35,12 +35,12 @@ describe Tray::Checkout::Parser do
           seller_token: "949u5uu9ef36f7u"
         }.each do |param, value|
           it param do
-            result[param].should == value
+            txn[param].should == value
           end
         end
 
         it "date_transaction" do
-          date_transaction = result[:date_transaction]
+          date_transaction = txn[:date_transaction]
           date_transaction.should be_a(Time)
           date_transaction.to_s.should == "2012-12-03 18:08:37 UTC"
         end
@@ -56,12 +56,12 @@ describe Tray::Checkout::Parser do
           url_payment: "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
         }.each do |param, value|
           it param do
-            result[:payment][param].should == value
+            txn[:payment][param].should == value
           end
         end
 
         it "date_approval" do
-          date_approval = result[:payment][:date_approval]
+          date_approval = txn[:payment][:date_approval]
           date_approval.should be_a(Time)
           date_approval.to_s.should == "2012-12-04 00:55:15 UTC"
         end
@@ -70,10 +70,10 @@ describe Tray::Checkout::Parser do
 
     context "with error response" do
       let(:xml) { body_for :get_failure_not_found }
-      let(:result) { parser.response(xml) }
+      let(:txn) { parser.response(xml) }
 
       it "does not return success" do
-        result[:success].should be_false
+        txn[:success].should be_false
       end
 
       context "returns error" do
@@ -81,7 +81,7 @@ describe Tray::Checkout::Parser do
           message: "Transação não encontrada"
         }.each do |param, value|
           it param do
-            result[:errors].first[param].should == value
+            txn[:errors].first[param].should == value
           end
         end
       end
@@ -89,10 +89,10 @@ describe Tray::Checkout::Parser do
 
     context "with validation error response" do
       let(:xml) { body_for :create_failure_validation_errors }
-      let(:result) { parser.response(xml) }
+      let(:txn) { parser.response(xml) }
 
       it "does not return success" do
-        result[:success].should be_false
+        txn[:success].should be_false
       end
 
       context "returns error" do
@@ -102,7 +102,7 @@ describe Tray::Checkout::Parser do
           field: "person_addresses.type_address"
         }.each do |param, value|
           it param do
-            result[:errors].first[param].should == value
+            txn[:errors].first[param].should == value
           end
         end
       end
@@ -174,29 +174,29 @@ describe Tray::Checkout::Parser do
       }
     end
 
-    let(:result) { parser.payment_params!(params) }
+    let(:txn) { parser.payment_params!(params) }
 
     it "sets customer gender expect API value" do
-      result[:customer][:gender].should == "M"
+      txn[:customer][:gender].should == "M"
     end
 
     it "sets customer relationship expect API value" do
-      result[:customer][:relationship].should == "S"
+      txn[:customer][:relationship].should == "S"
     end
 
     it "sets customer contact type expect API value" do
-      result[:customer][:contacts][0][:type_contact].should == "H"
-      result[:customer][:contacts][1][:type_contact].should == "M"
-      result[:customer][:contacts][2][:type_contact].should == "W"
+      txn[:customer][:contacts][0][:type_contact].should == "H"
+      txn[:customer][:contacts][1][:type_contact].should == "M"
+      txn[:customer][:contacts][2][:type_contact].should == "W"
     end
 
     it "sets customer address type expect API value" do
-      result[:customer][:addresses][0][:type_address].should == "B"
-      result[:customer][:addresses][1][:type_address].should == "D"
+      txn[:customer][:addresses][0][:type_address].should == "B"
+      txn[:customer][:addresses][1][:type_address].should == "D"
     end
 
     it "sets payment method ID expect API value" do
-      result[:payment][:payment_method_id].should == 4
+      txn[:payment][:payment_method_id].should == 4
     end
   end
 end
