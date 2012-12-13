@@ -8,6 +8,7 @@ end
 def body_for(response)
   case response
   when :get_success_boleto,
+       :get_success_mastercard,
        :get_failure_not_found,
        :create_success_boleto,
        :create_success_mastercard,

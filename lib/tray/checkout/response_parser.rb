@@ -65,7 +65,6 @@ module Tray
       end
 
       def transaction_types!(transaction)
-        transaction[:payment_method] = PAYMENT_METHOD.invert[transaction[:payment_method_id]]
         transaction[:status] = TRANSACTION_STATUS.invert[transaction[:status_id]]
       end
 

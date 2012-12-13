@@ -8,7 +8,7 @@ describe Tray::Checkout::Transaction do
     context "when transaction is found" do
       before :each do
         mock_request_for(:get_success_boleto)
-        @response = transaction.get("522045453u5uu32e0u8014f060uuu5uu")
+        @response = transaction.get("db9b3265af6e7e19af8dd70e00d77383x")
       end
 
       it "returns success" do
@@ -16,13 +16,18 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:transaction_token].should == "522045453u5uu32e0u8014f060uuu5uu"
-        @response.transaction[:transaction_id].should == 501
+        @response.transaction[:transaction_token].should == "db9b3265af6e7e19af8dd70e00d77383x"
+        @response.transaction[:transaction_id].should == 530
       end
 
       it "returns payment data" do
         @response.payment[:payment_method_name].should == "Boleto Bancario"
-        @response.payment[:url_payment].should == "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
+        @response.payment[:url_payment].should == "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e"
+      end
+
+      it "returns customer data" do
+        @response.customer[:name].should == "Pedro Bonamides"
+        @response.customer[:email].should == "pedro@bo.com.br"
       end
     end
 
@@ -55,9 +60,18 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:transaction_token].should == "u522169ce59763uu717160u4u1183u43"
+        @response.transaction[:transaction_token].should == "fc739f786425e34010481dcc2939e4bdx"
         @response.transaction[:status].should == :approved
-        @response.transaction[:payment_method].should == :mastercard
+      end
+
+      it "returns payment data" do
+        @response.payment[:payment_method].should == :mastercard
+        @response.payment[:tid].should == "1355409331"
+      end
+
+      it "returns customer data" do
+        @response.customer[:name].should == "Pedro Bonamides"
+        @response.customer[:email].should == "pedro@bo.com.br"
       end
     end
 
