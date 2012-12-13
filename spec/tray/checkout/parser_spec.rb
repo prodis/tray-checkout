@@ -5,107 +5,21 @@ describe Tray::Checkout::Parser do
   let(:parser) { Tray::Checkout::Parser.new }
 
   describe "#response" do
-    context "with success response" do
-      let(:xml) { body_for :get_success_boleto }
-      let(:txn) { parser.response(xml) }
-
-      it "returns success" do
-        txn[:success].should be_true
-      end
-
-      context "returns transaction" do
-        { transaction_token: "522045453u5uu32e0u8014f060uuu5uu",
-          transaction_id: 501,
-          payment_method: :boleto,
-          payment_method_id: 6,
-          payment_method_name: "Boleto Bancario",
-          status: :waiting_payment,
-          status_id: 4,
-          status_name: "Aguardando Pagamento",
-          order_number: "R1240",
-          price_original: 213.21,
-          price_payment: 213.21,
-          price_seller: 199.19,
-          price_additional: 0.00,
-          price_discount: 0.00,
-          shipping_type: "Sedex",
-          shipping_price: 1.23,
-          split: 1,
-          url_notification: "http://prodis.blog.br/tray_notification",
-          seller_token: "949u5uu9ef36f7u"
-        }.each do |param, value|
-          it param do
-            txn[param].should == value
-          end
-        end
-
-        it "date_transaction" do
-          date_transaction = txn[:date_transaction]
-          date_transaction.should be_a(Time)
-          date_transaction.to_s.should == "2012-12-03 18:08:37 UTC"
-        end
-      end
-
-      context "returns payment" do
-        { payment_method: :boleto,
-          payment_method_id: 6,
-          payment_method_name: "Boleto Bancario",
-          price_payment: 213.21,
-          split: 1,
-          number_proccess: 718,
-          url_payment: "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
-        }.each do |param, value|
-          it param do
-            txn[:payment][param].should == value
-          end
-        end
-
-        it "date_approval" do
-          date_approval = txn[:payment][:date_approval]
-          date_approval.should be_a(Time)
-          date_approval.to_s.should == "2012-12-04 00:55:15 UTC"
-        end
-      end
+    before :each do
+      @xml = body_for(:get_success_boleto)
+      @response_parser = Tray::Checkout::ResponseParser.new(@xml)
+      @response = Tray::Checkout::Response.new
+      Tray::Checkout::ResponseParser.stub(:new).and_return(@response_parser)
     end
 
-    context "with error response" do
-      let(:xml) { body_for :get_failure_not_found }
-      let(:txn) { parser.response(xml) }
-
-      it "does not return success" do
-        txn[:success].should be_false
-      end
-
-      context "returns error" do
-        { code: "003042",
-          message: "Transação não encontrada"
-        }.each do |param, value|
-          it param do
-            txn[:errors].first[param].should == value
-          end
-        end
-      end
+    it "creates response parser" do
+      Tray::Checkout::ResponseParser.should_receive(:new).with(@xml)
+      parser.response(@xml)
     end
 
-    context "with validation error response" do
-      let(:xml) { body_for :create_failure_validation_errors }
-      let(:txn) { parser.response(xml) }
-
-      it "does not return success" do
-        txn[:success].should be_false
-      end
-
-      context "returns error" do
-        { code: "1",
-          message: "não pode ficar em branco",
-          message_complete: "Tipo não pode ficar em branco",
-          field: "person_addresses.type_address"
-        }.each do |param, value|
-          it param do
-            txn[:errors].first[param].should == value
-          end
-        end
-      end
+    it "parses response" do
+      @response_parser.should_receive(:parse).and_return(@response)
+      parser.response(@xml).should == @response
     end
   end
 
@@ -174,29 +88,29 @@ describe Tray::Checkout::Parser do
       }
     end
 
-    let(:txn) { parser.payment_params!(params) }
+    let(:payment_params) { parser.payment_params!(params) }
 
     it "sets customer gender expect API value" do
-      txn[:customer][:gender].should == "M"
+      payment_params[:customer][:gender].should == "M"
     end
 
     it "sets customer relationship expect API value" do
-      txn[:customer][:relationship].should == "S"
+      payment_params[:customer][:relationship].should == "S"
     end
 
     it "sets customer contact type expect API value" do
-      txn[:customer][:contacts][0][:type_contact].should == "H"
-      txn[:customer][:contacts][1][:type_contact].should == "M"
-      txn[:customer][:contacts][2][:type_contact].should == "W"
+      payment_params[:customer][:contacts][0][:type_contact].should == "H"
+      payment_params[:customer][:contacts][1][:type_contact].should == "M"
+      payment_params[:customer][:contacts][2][:type_contact].should == "W"
     end
 
     it "sets customer address type expect API value" do
-      txn[:customer][:addresses][0][:type_address].should == "B"
-      txn[:customer][:addresses][1][:type_address].should == "D"
+      payment_params[:customer][:addresses][0][:type_address].should == "B"
+      payment_params[:customer][:addresses][1][:type_address].should == "D"
     end
 
     it "sets payment method ID expect API value" do
-      txn[:payment][:payment_method_id].should == 4
+      payment_params[:payment][:payment_method_id].should == 4
     end
   end
 end

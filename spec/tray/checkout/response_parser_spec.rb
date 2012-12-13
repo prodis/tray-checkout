@@ -1,0 +1,128 @@
+# encoding: UTF-8
+require 'spec_helper'
+
+describe Tray::Checkout::ResponseParser do
+  describe "#parse" do
+    context "with success response" do
+      let(:xml) { body_for :get_success_boleto }
+      let(:parser) { Tray::Checkout::ResponseParser.new(xml) }
+      let(:response) { parser.parse }
+
+      it "returns success" do
+        response.success?.should be_true
+      end
+
+      it "returns empty errors" do
+        response.errors.should be_empty
+      end
+
+      context "returns transaction" do
+        { transaction_token: "522045453u5uu32e0u8014f060uuu5uu",
+          transaction_id: 501,
+          payment_method: :boleto,
+          payment_method_id: 6,
+          payment_method_name: "Boleto Bancario",
+          status: :waiting_payment,
+          status_id: 4,
+          status_name: "Aguardando Pagamento",
+          order_number: "R1240",
+          price_original: 213.21,
+          price_payment: 213.21,
+          price_seller: 199.19,
+          price_additional: 0.00,
+          price_discount: 0.00,
+          shipping_type: "Sedex",
+          shipping_price: 1.23,
+          split: 1,
+          url_notification: "http://prodis.blog.br/tray_notification",
+          seller_token: "949u5uu9ef36f7u"
+        }.each do |param, value|
+          it param do
+            response.transaction[param].should == value
+          end
+        end
+
+        it "date_transaction" do
+          date_transaction = response.transaction[:date_transaction]
+          date_transaction.should be_a(Time)
+          date_transaction.to_s.should == "2012-12-03 18:08:37 UTC"
+        end
+      end
+
+      context "returns payment" do
+        { payment_method: :boleto,
+          payment_method_id: 6,
+          payment_method_name: "Boleto Bancario",
+          price_payment: 213.21,
+          split: 1,
+          number_proccess: 718,
+          url_payment: "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
+        }.each do |param, value|
+          it param do
+            response.payment[param].should == value
+          end
+        end
+
+        it "date_approval" do
+          date_approval = response.payment[:date_approval]
+          date_approval.should be_a(Time)
+          date_approval.to_s.should == "2012-12-04 00:55:15 UTC"
+        end
+      end
+    end
+
+    context "with error response" do
+      let(:xml) { body_for :get_failure_not_found }
+      let(:parser) { Tray::Checkout::ResponseParser.new(xml) }
+      let(:response) { parser.parse  }
+
+      it "does not return success" do
+        response.success?.should be_false
+      end
+
+      [:transaction, :payment, :customer].each do |info|
+        it "returns nil #{info}" do
+          response.send(info).should be_nil
+        end
+      end
+
+      context "returns error" do
+        { code: "003042",
+          message: "Transação não encontrada"
+        }.each do |param, value|
+          it param do
+            response.errors.first[param].should == value
+          end
+        end
+      end
+    end
+
+    context "with validation error response" do
+      let(:xml) { body_for :create_failure_validation_errors }
+      let(:parser) { Tray::Checkout::ResponseParser.new(xml) }
+      let(:response) { parser.parse  }
+
+      it "does not return success" do
+        response.success?.should be_false
+      end
+
+      [:transaction, :payment, :customer].each do |info|
+        it "returns nil #{info}" do
+          response.send(info).should be_nil
+        end
+      end
+
+      context "returns error" do
+        { code: "1",
+          message: "não pode ficar em branco",
+          message_complete: "Tipo não pode ficar em branco",
+          field: "person_addresses.type_address"
+        }.each do |param, value|
+          it param do
+            response.errors.first[param].should == value
+          end
+        end
+      end
+    end
+  end
+end
