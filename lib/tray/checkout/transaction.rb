@@ -5,13 +5,13 @@ module Tray
       URL = "http://api.sandbox.checkout.tray.com.br/api/transactions"
 
       def get(token)
-        response = web_service.request!("#{URL}/get_by_token", { token: token })
-        parser.response(response)
+        xml = web_service.request!("#{URL}/get_by_token", { token: token })
+        parser.response(xml)
       end
 
       def create(params)
-        response = web_service.request!("#{URL}/pay_complete", parser.payment_params!(params))
-        parser.response(response)
+        xml = web_service.request!("#{URL}/pay_complete", parser.payment_params!(params))
+        parser.response(xml)
       end
 
       private
