@@ -9,6 +9,7 @@ module Tray
       def parse
         customer_types! @params[:customer]
         payment_types! @params[:payment]
+        products! @params
         @params
       end
 
@@ -41,6 +42,11 @@ module Tray
         addresses.each do |address|
           address[:type_address] = ADDRESS_TYPE[address[:address_type]] if address[:address_type]
         end
+      end
+
+      def products!(params)
+        return unless params[:transaction]
+        params[:transaction_product] = params[:transaction].delete(:products)
       end
     end
   end

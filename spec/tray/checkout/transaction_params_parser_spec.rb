@@ -45,15 +45,20 @@ describe Tray::Checkout::TransactionParamsParser do
         order_number: "R1245",
         shipping_type: "Sedex",
         shipping_price: 13.94,
-        url_notification: "http://prodis.blog.br/tray_notification"
+        url_notification: "http://prodis.blog.br/tray_notification",
+        products: [
+          { code: "LOGO-8278",
+            quantity: 2,
+            price_unit: 100.99,
+            description: "Logo Prodis"
+          },
+          { code: "877",
+            quantity: 1,
+            price_unit: 10.00,
+            description: "Outro produto"
+          }
+        ]
       },
-      transaction_product: [
-        { code: "LOGO-8278",
-          quantity: 2,
-          price_unit: 100.99,
-          description: "Logo Prodis"
-        }
-      ],
       payment: {
         payment_method: :mastercard,
         split: 3,
@@ -91,6 +96,18 @@ describe Tray::Checkout::TransactionParamsParser do
 
     it "sets payment method ID expect API value" do
       transaction_params[:payment][:payment_method_id].should == 4
+    end
+
+    it "sets products as expect API data structure" do
+      transaction_params[:transaction_product][0][:code].should == "LOGO-8278"
+      transaction_params[:transaction_product][0][:quantity].should == 2
+      transaction_params[:transaction_product][0][:price_unit].should == 100.99
+      transaction_params[:transaction_product][0][:description].should == "Logo Prodis"
+
+      transaction_params[:transaction_product][1][:code].should == "877"
+      transaction_params[:transaction_product][1][:quantity].should == 1
+      transaction_params[:transaction_product][1][:price_unit].should == 10.00
+      transaction_params[:transaction_product][1][:description].should == "Outro produto"
     end
   end
 end
