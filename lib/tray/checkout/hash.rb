@@ -1,21 +1,15 @@
 # encoding: UTF-8
 class Hash
-  def symbolize_all_keys!
-    symbolize_all_keys_in self
-  end
+  def symbolize_all_keys
+    {}.tap do |results|
+      self.each do |key, value|
+        if value.is_a?(Array)
+          symbolized_value = value.map { |item| item.is_a?(Hash) ? item.symbolize_all_keys : item }
+        else
+          symbolized_value = value.is_a?(Hash) ? value.symbolize_all_keys : value
+        end
 
-  private
-
-  def symbolize_all_keys_in(hash)
-    case
-    when hash.is_a?(Array)
-      hash.each { |value| symbolize_all_keys_in(value) }
-    when hash.is_a?(Hash)
-      hash.symbolize_keys!
-
-      hash.each_value do |value|
-        value.symbolize_keys! if value.is_a?(Hash)
-        symbolize_all_keys_in(value)
+        results[(key.to_sym rescue key)] = symbolized_value
       end
     end
   end

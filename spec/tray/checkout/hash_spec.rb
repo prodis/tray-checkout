@@ -2,11 +2,10 @@
 require 'spec_helper'
 
 describe Hash do
-  describe "#symbolize_all_keys!" do
+  describe "#symbolize_all_keys" do
     it "symbolize keys" do
       hash = { "text" => "Um texto", "number" => 456 }
-      hash.symbolize_all_keys!
-      hash.should == { text: "Um texto", number: 456 }
+      hash.symbolize_all_keys.should == { text: "Um texto", number: 456 }
     end
 
     context "when hash has nested hashes" do
@@ -24,8 +23,7 @@ describe Hash do
             }, 
           }
         }
-        hash.symbolize_all_keys!
-        hash.should == {
+        hash.symbolize_all_keys.should == {
           customer: { 
             name: "Pedro Bonamides",
             email: "pedro@bo.com.br", 
@@ -48,16 +46,19 @@ describe Hash do
             "errors" => [
               { "code" => 3042, "message" => "Transação não encontrada" },
               { "code" => 9999, "message" => "Qualquer outra mensagem" }
-            ]
+            ],
+            "numbers" => [0, 1, 2, 3, 4, 5],
+            "texts" => ["Akira", "Fernando", "José"]
           }
         }
-        hash.symbolize_all_keys!
-        hash.should == {
+        hash.symbolize_all_keys.should == {
           error_response: {
             errors: [
               { code: 3042, message: "Transação não encontrada" },
               { code: 9999, message: "Qualquer outra mensagem" }
-            ]
+            ],
+            numbers: [0, 1, 2, 3, 4, 5],
+            texts: ["Akira", "Fernando", "José"]
           }
         }
       end

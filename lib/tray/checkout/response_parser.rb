@@ -30,7 +30,7 @@ module Tray
       end
 
       def create_response_hash
-        Hash.from_xml(@xml).symbolize_all_keys![:transaction]
+        Hash.from_xml(@xml).symbolize_all_keys[:transaction]
       end
 
       def success?
