@@ -26,6 +26,7 @@ module Tray
       def payment_map!(payment)
         return unless payment
         payment[:payment_method_id] = PAYMENT_METHOD[payment[:method]] if payment[:method]
+        payment[:card].each { |key, value| payment["card_#{key}".to_sym] = value } if payment[:card]
       end
 
       def contacts_map!(contacts)

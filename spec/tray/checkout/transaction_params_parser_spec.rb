@@ -56,11 +56,13 @@ describe Tray::Checkout::TransactionParamsParser do
       payment: {
         method: :mastercard,
         split: 3,
-        card_name: "ZEFINHA NOCEGA",
-        card_number: "5105105105105100",
-        card_expdate_month: "09",
-        card_expdate_year: "2015",
-        card_cvv: "123"
+        card: {
+          name: "ZEFINHA NOCEGA",
+          number: "5105105105105100",
+          expdate_month: "09",
+          expdate_year: "2015",
+          cvv: "123"
+        }
       }
     }
   end
@@ -96,6 +98,17 @@ describe Tray::Checkout::TransactionParamsParser do
 
     it "sets payment method ID expect API value" do
       transaction_params[:payment][:payment_method_id].should == 4
+    end
+
+    { card_name: "ZEFINHA NOCEGA",
+      card_number: "5105105105105100",
+      card_expdate_month: "09",
+      card_expdate_year: "2015",
+      card_cvv: "123"
+    }.each do |param, value|
+      it "sets payment #{param}" do
+        transaction_params[:payment][param].should == value
+      end
     end
 
     it "sets products as expect API data structure" do
