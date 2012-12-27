@@ -76,7 +76,9 @@ module Tray
         payment = transaction[:payment]
         payment[:method] = PAYMENT_METHOD.invert[payment.delete(:payment_method_id)]
         payment[:method_name] = payment.delete(:payment_method_name)
+        payment[:price] = payment.delete(:price_payment)
         payment[:response] = payment.delete(:payment_response)
+        payment[:url] = payment.delete(:url_payment)
       end
 
       def customer_map!(transaction)

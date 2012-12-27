@@ -50,14 +50,16 @@ describe Tray::Checkout::ResponseParser do
       context "returns payment" do
         { method: :boleto,
           method_name: "Boleto Bancario",
-          price_payment: 33.21,
+          price: 33.21,
           split: 1,
           number_proccess: 750,
-          url_payment: "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e",
-          linha_digitavel: "34191.76007 00075.091140 53021.450001 1 55510000003321",
           response: "Texto de resposta fake.",
+          url: "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e",
+          linha_digitavel: "34191.76007 00075.091140 53021.450001 1 55510000003321",
           payment_method_id: nil,
           payment_method_name: nil,
+          price_payment: nil,
+          url_payment: nil,
           payment_response: nil
         }.each do |param, value|
           it param do

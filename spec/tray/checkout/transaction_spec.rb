@@ -22,7 +22,7 @@ describe Tray::Checkout::Transaction do
 
       it "returns payment data" do
         @response.payment[:method_name].should == "Boleto Bancario"
-        @response.payment[:url_payment].should == "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e"
+        @response.payment[:url].should == "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e"
       end
 
       it "returns customer data" do
