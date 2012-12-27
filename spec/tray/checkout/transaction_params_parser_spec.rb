@@ -12,18 +12,12 @@ describe Tray::Checkout::TransactionParamsParser do
         sex: :male,
         marital_status: :single,
         contacts: [
-          { contact_type: :home,
-            number_contact: "1142360873"
-          },
-          { contact_type: :mobile,
-            number_contact: "11987654321"
-          },
-          { contact_type: :work,
-            number_contact: "1134567890"
-          }
+          { type: :home,   number: "1142360873"  },
+          { type: :mobile, number: "11987654321" },
+          { type: :work,   number: "1134567890"  }
         ],
         addresses: [
-          { address_type: :billing,
+          { type: :billing,
             street: "Avenida Pedro Alvares Cabral",
             number: "123",
             neighborhood: "Parque Ibirapuera",
@@ -31,7 +25,7 @@ describe Tray::Checkout::TransactionParamsParser do
             city: "São Paulo",
             state: "SP"
           },
-          { address_type: :delivery,
+          { type: :delivery,
             street: "Avenida Pedro Alvares Cabral",
             number: "123",
             neighborhood: "Parque Ibirapuera",
@@ -60,7 +54,7 @@ describe Tray::Checkout::TransactionParamsParser do
         ]
       },
       payment: {
-        payment_method: :mastercard,
+        method: :mastercard,
         split: 3,
         card_name: "ZEFINHA NOCEGA",
         card_number: "5105105105105100",
@@ -87,6 +81,12 @@ describe Tray::Checkout::TransactionParamsParser do
       transaction_params[:customer][:contacts][0][:type_contact].should == "H"
       transaction_params[:customer][:contacts][1][:type_contact].should == "M"
       transaction_params[:customer][:contacts][2][:type_contact].should == "W"
+    end
+
+    it "sets customer contact number expect API value" do
+      transaction_params[:customer][:contacts][0][:number_contact].should == "1142360873"
+      transaction_params[:customer][:contacts][1][:number_contact].should == "11987654321"
+      transaction_params[:customer][:contacts][2][:number_contact].should == "1134567890"
     end
 
     it "sets customer address type expect API value" do
