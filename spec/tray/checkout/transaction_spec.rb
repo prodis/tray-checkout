@@ -16,12 +16,12 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:transaction_token].should == "db9b3265af6e7e19af8dd70e00d77383x"
-        @response.transaction[:transaction_id].should == 530
+        @response.transaction[:token].should == "db9b3265af6e7e19af8dd70e00d77383x"
+        @response.transaction[:id].should == 530
       end
 
       it "returns payment data" do
-        @response.payment[:payment_method_name].should == "Boleto Bancario"
+        @response.payment[:method_name].should == "Boleto Bancario"
         @response.payment[:url_payment].should == "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e"
       end
 
@@ -60,12 +60,12 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:transaction_token].should == "fc739f786425e34010481dcc2939e4bdx"
+        @response.transaction[:token].should == "fc739f786425e34010481dcc2939e4bdx"
         @response.transaction[:status].should == :approved
       end
 
       it "returns payment data" do
-        @response.payment[:payment_method].should == :mastercard
+        @response.payment[:method].should == :mastercard
         @response.payment[:tid].should == "1355409331"
       end
 

@@ -17,10 +17,9 @@ describe Tray::Checkout::ResponseParser do
       end
 
       context "returns transaction" do
-        { transaction_token: "db9b3265af6e7e19af8dd70e00d77383x",
-          transaction_id: 530,
+        { token: "db9b3265af6e7e19af8dd70e00d77383x",
+          id: 530,
           status: :approved,
-          status_id: 6,
           status_name: "Aprovada",
           order_number: "F2456",
           price_original: 33.21,
@@ -31,7 +30,10 @@ describe Tray::Checkout::ResponseParser do
           shipping_type: "Sedex",
           shipping_price: 1.23,
           split: 1,
-          url_notification: "http://prodis.blog.br/tray_notification"
+          url_notification: "http://prodis.blog.br/tray_notification",
+          transaction_token: nil,
+          transaction_id: nil,
+          status_id: nil
         }.each do |param, value|
           it param do
             response.transaction[param].should == value
@@ -46,14 +48,17 @@ describe Tray::Checkout::ResponseParser do
       end
 
       context "returns payment" do
-        { payment_method: :boleto,
-          payment_method_id: 6,
-          payment_method_name: "Boleto Bancario",
+        { method: :boleto,
+          method_name: "Boleto Bancario",
           price_payment: 33.21,
           split: 1,
           number_proccess: 750,
           url_payment: "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e",
-          linha_digitavel: "34191.76007 00075.091140 53021.450001 1 55510000003321"
+          linha_digitavel: "34191.76007 00075.091140 53021.450001 1 55510000003321",
+          response: "Texto de resposta fake.",
+          payment_method_id: nil,
+          payment_method_name: nil,
+          payment_response: nil
         }.each do |param, value|
           it param do
             response.payment[param].should == value
@@ -77,6 +82,47 @@ describe Tray::Checkout::ResponseParser do
         }.each do |param, value|
           it param do
             response.customer[param].should == value
+          end
+        end
+
+        context "address with" do
+          { street: "Avenida Pedro Alvares Cabral",
+            number: "123",
+            neighborhood: "Parque Ibirapuera",
+            postal_code: "04094050",
+            completion: nil,
+            city: "São Paulo",
+            state: "SP"
+          }.each do |param, value|
+            it param do
+              response.customer[:addresses].first[param].should == value
+            end
+          end
+        end
+
+        context "contacts with" do
+          [ { id: 345,
+              number: "1137654321",
+              type: :home,
+              primary: true,
+              contact_id: nil,
+              value: nil,
+              type_contact: nil
+            },
+            { id: 348,
+              number: "11987654321",
+              type: :mobile,
+              primary: false,
+              contact_id: nil,
+              value: nil,
+              type_contact: nil
+            }
+          ].each_with_index do |contacts, i|
+            contacts.each do |param, value|
+              it param do
+                response.customer[:contacts][i][param].should == value
+              end
+            end
           end
         end
       end

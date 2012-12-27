@@ -58,19 +58,34 @@ module Tray
 
       def create_data_response
         data_response = response_hash[:data_response][:transaction]
-        transaction_types! data_response
-        payment_types! data_response
-        date_to_time! data_response
+        transaction_map! data_response
+        payment_map!     data_response
+        customer_map!    data_response
+        date_to_time!    data_response
         data_response
       end
 
-      def transaction_types!(transaction)
-        transaction[:status] = TRANSACTION_STATUS.invert[transaction[:status_id]]
+      def transaction_map!(transaction)
+        transaction[:status] = TRANSACTION_STATUS.invert[transaction.delete(:status_id)]
+        transaction[:id] = transaction.delete(:transaction_id)
+        transaction[:token] = transaction.delete(:transaction_token)
+        transaction[:affiliates] = transaction.delete(:transaction_affiliates)
       end
 
-      def payment_types!(transaction)
+      def payment_map!(transaction)
         payment = transaction[:payment]
-        payment[:payment_method] = PAYMENT_METHOD.invert[payment[:payment_method_id]]
+        payment[:method] = PAYMENT_METHOD.invert[payment.delete(:payment_method_id)]
+        payment[:method_name] = payment.delete(:payment_method_name)
+        payment[:response] = payment.delete(:payment_response)
+      end
+
+      def customer_map!(transaction)
+        customer = transaction[:customer]
+        customer[:contacts].each do |contact|
+          contact[:type] = CONTACT_TYPE.invert[contact.delete(:type_contact)]
+          contact[:id] = contact.delete(:contact_id)
+          contact[:number] = contact.delete(:value)
+        end
       end
 
       def date_to_time!(hash)

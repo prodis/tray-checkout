@@ -60,13 +60,38 @@
         <date_approval>2012-12-15T15:24:38</date_approval>
         <date_payment>2012-12-15T15:23:05</date_payment>
         <tid></tid>
-        <payment_response></payment_response>
+        <payment_response>Texto de resposta fake.</payment_response>
         <card_id nil="true"></card_id>
       </payment>
       <customer>
         <name>Pedro Bonamides</name>
         <email>pedro@bo.com.br</email>
         <cpf>18565842673</cpf>
+        <addresses type="array">
+          <address>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <number>123</number>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <postal_code>04094050</postal_code>
+            <completion></completion>
+            <city>São Paulo</city>
+            <state>SP</state>
+          </address>
+        </addresses>
+        <contacts type="array">
+          <contact>
+            <contact_id type="integer">345</contact_id>
+            <value>1137654321</value>
+            <type_contact>H</type_contact>
+            <primary type="boolean">true</primary>
+          </contact>
+          <contact>
+            <contact_id type="integer">348</contact_id>
+            <value>11987654321</value>
+            <type_contact>M</type_contact>
+            <primary type="boolean">false</primary>
+          </contact>
+        </contacts>
       </customer>
     </transaction>
   </data_response>
