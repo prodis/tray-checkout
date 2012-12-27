@@ -19,28 +19,41 @@ Tray Checkout API
   transaction = Tray::Checkout::Transaction.new
 
 Getting an existing transaction:
-  txn = transaction.get("522045453u5uu32e0u8014f060uuu5uu")
-  txn[:success]               # => true
-  txn[:transaction_token]     # => "522045453u5uu32e0u8014f060uuu5uu"
-  txn[:transaction_id]        # => 501
-  txn[:status]                # => :waiting_payment
-  txn[:payment_method]        # => :boleto
-  txn[:price_payment]         # => 213.21
-  txn[:price_seller]          # => 199.19
-  txn[:split]                 # => 1
-  txn[:payment][:url_payment] # => "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
-  txn[:date_transaction].strftime("%d/%m/%Y") # => "03/12/2012"
+  response = transaction.get("522045453u5uu32e0u8014f060uuu5uu")
+  response.success? # => true
+
+  # Transaction
+  response.transaction[:token]         # => "522045453u5uu32e0u8014f060uuu5uu"
+  response.transaction[:id]            # => 501
+  response.transaction[:status]        # => :waiting_payment
+  response.transaction[:status_name]   # => "Aguardando Pagamento"
+  response.transaction[:price_payment] # => 213.21
+  response.transaction[:price_seller]  # => 199.19
+  response.transaction[:split]         # => 1
+  response.transaction[:date_transaction].strftime("%d/%m/%Y") # => "03/12/2012"
+
+  # Payment
+  response.payment[:method]      # => :boleto
+  response.payment[:method_name] # => "Boleto Bancario"
+  response.payment[:price]       # => 213.21
+  response.payment[:split]       # => 1
+  response.payment[:url]         # => "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
+
+  # Customer
+  response.customer[:name]  # => "Pedro Bonamides"
+  response.customer[:email] # => "pedro@bo.com.br"
+  response.customer[:cpf]   # => "18565842673"
 
 When the transaction is not found:
-  txn = transaction.get("xxxxx00000yyyy")
-  txn[:success]                # => false
-  txn[:transaction_id]         # => nil
-  txn[:errors].first[:code]    # => "003042"
-  txn[:errors].first[:message] # => "Transação não encontrada"
+  response = transaction.get("xxxxx00000yyyy")
+  response.success?                 # => false
+  response.transaction[:id]         # => nil
+  response[:errors].first[:code]    # => "003042"
+  response[:errors].first[:message] # => "Transação não encontrada"
 
 Creating a successful transaction:
-  txn = transaction.create(
-    token_account: "949u5uu9ef36f7u",
+  response = transaction.create(
+    token_account: "123u5uu9ef36f7u",
     customer: {
       name: "Pedro Bonamides",
       cpf: "18565842673",
@@ -48,12 +61,12 @@ Creating a successful transaction:
       sex: :male,
       marital_status: :single,
       contacts: [
-        { contact_type: :home,
-          number_contact: "1142360873"
+        { type: :home,
+          number: "1142360873"
         }
       ],
       addresses: [
-        { address_type: :billing,
+        { type: :billing,
           street: "Avenida Pedro Alvares Cabral",
           number: "123",
           neighborhood: "Parque Ibirapuera",
@@ -68,39 +81,54 @@ Creating a successful transaction:
       shipping_type: "Sedex",
       shipping_price: 13.94,
       url_notification: "http://prodis.blog.br/tray_notification"
+      products: [
+        { code: "LOGO-8278",
+          quantity: 2,
+          price_unit: 100.99,
+          description: "Logo Prodis"
+        },
+        { code: "877",
+          quantity: 1,
+          price_unit: 10.00,
+          description: "Outro produto"
+        }
+      ]
     },
-    transaction_product: [
-      { code: "LOGO-8278",
-        quantity: 2,
-        price_unit: 100.99,
-        description: "Logo Prodis"
-      },
-      { code: "877",
-        quantity: 1,
-        price_unit: 10.00,
-        description: "Outro produto"
-      }
-    ],
     payment: {
-      payment_method: :mastercard,
+      method: :mastercard,
       split: 3,
-      card_name: "ZEFINHA NOCEGA",
-      card_number: "5105105105105100",
-      card_expdate_month: "09",
-      card_expdate_year: "2015",
-      card_cvv: "123"
+      card: {
+        name: "ZEFINHA NOCEGA",
+        number: "5105105105105100",
+        expdate_month: "09",
+        expdate_year: "2015",
+        cvv: "123"
+      }
     }
   )
-  txn[:success]             # => true
-  txn[:transaction_token]   # => "87654321u5uu92e4u09876543uuu5uu"
-  txn[:transaction_id]      # => 503
-  txn[:status]              # => :approved
-  txn[:status_name]         # => "Aprovada"
-  txn[:payment_method]      # => :mastercard
-  txn[:payment_method_name] # => "Mastercard"
-  txn[:price_payment]       # => 213.21
-  txn[:price_seller]        # => 199.19
-  txn[:date_payment].strftime("%d/%m/%Y") # => "05/12/2012"
+  response.success? # => true
+
+  # Transaction
+  response.transaction[:token]         # => "87654321u5uu92e4u09876543uuu5uu"
+  response.transaction[:id]            # => 503
+  response.transaction[:status]        # => :approved
+  response.transaction[:status_name]   # => "Aprovada"
+  response.transaction[:price_payment] # => 213.21
+  response.transaction[:price_seller]  # => 199.19
+  response.transaction[:split]         # => 3
+  response.transaction[:date_transaction].strftime("%d/%m/%Y") # => "05/12/2012"
+
+  # Payment
+  response.payment[:method]      # => :mastercard
+  response.payment[:method_name] # => "Mastercard"
+  response.payment[:price]       # => 213.21
+  response.payment[:split]       # => 3
+  response.payment[:url]         # => "http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu"
+
+  # Customer
+  response.customer[:name]  # => "Pedro Bonamides"
+  response.customer[:email] # => "pedro@bo.com.br"
+  response.customer[:cpf]   # => "18565842673"
 
 
 == Author

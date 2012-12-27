@@ -1,3 +1,7 @@
+== Version 0.1.0
+- Support to v1 API version.
+- A lot refactories.
+
 == Version 0.0.1
 - First stable version.
 
