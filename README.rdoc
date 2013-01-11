@@ -132,6 +132,12 @@ Creating a successful transaction:
 
 == Configurations
 
+== Token Account
+To create transactions is necessary to provide a <b>token account</b>. You can supply it in Tray::Checkout::Transaction#create method params, for each method call, or to config token account once using <b>Tray::Checkout</b> module.
+  Tray::Checkout.configure do |config|
+    config.token_account = "123u5uu9ef36f7u"
+  end
+
 === Timeout
 
 For default, the timeout for a request to Tray Checkout API is <b>5 seconds</b>. If Tray Checkout API does not respond, a <b>Timeout::Error</b> exception will be raised.
@@ -405,6 +411,7 @@ To disable the log, change log level and configure other log output, use <b>Tray
     config.log_level = :debug
     config.logger = Rails.logger
     config.request_timeout = 3
+    config.token_account = "123u5uu9ef36f7u"
   end
 
 

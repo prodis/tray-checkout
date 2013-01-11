@@ -7,6 +7,7 @@ module Tray
       end
 
       def parse
+        token_account! @params
         customer_map! @params[:customer]
         payment_map!  @params[:payment]
         products_map! @params
@@ -14,6 +15,10 @@ module Tray
       end
 
       private
+
+      def token_account!(params)
+        params[:token_account] = Tray::Checkout.token_account if params[:token_account].nil?
+      end
 
       def customer_map!(customer)
         return unless customer

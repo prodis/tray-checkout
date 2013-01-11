@@ -122,5 +122,31 @@ describe Tray::Checkout::TransactionParamsParser do
       transaction_params[:transaction_product][1][:price_unit].should == 10.00
       transaction_params[:transaction_product][1][:description].should == "Outro produto"
     end
+
+    it "keeps token account supplied in params" do
+      transaction_params[:token_account].should == params[:token_account]
+    end
+
+    context "when sets token account in configuration" do
+      around do |example|
+        Tray::Checkout.configure { |config| config.token_account = "1q2w3e4r5t6y7u8" }
+        example.run
+        Tray::Checkout.configure { |config| config.token_account = nil }
+      end
+
+      context "and token account is supplied in params" do
+        it "keeps token account supplied in params" do
+          transaction_params[:token_account].should == params[:token_account]
+        end
+      end
+
+      context "and token account is not supplied in params" do
+        it "uses token account from configuration" do
+          params.delete(:token_account)
+          transaction_params = Tray::Checkout::TransactionParamsParser.new(params).parse
+          transaction_params[:token_account].should == "1q2w3e4r5t6y7u8"
+        end
+      end
+    end
   end
 end

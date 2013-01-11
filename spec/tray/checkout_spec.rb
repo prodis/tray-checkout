@@ -19,4 +19,22 @@ describe Tray::Checkout do
       end
     end
   end
+
+  describe "#token_account" do
+    it "default is nil" do
+      Tray::Checkout::token_account.should be_nil
+    end
+
+    context "when set token account" do
+      around do |example|
+        Tray::Checkout.configure { |config| config.token_account = "123u5uu9ef36f7u" }
+        example.run
+        Tray::Checkout.configure { |config| config.token_account = nil }
+      end
+
+      it "returns token account" do
+        Tray::Checkout.token_account.should == "123u5uu9ef36f7u"
+      end
+    end
+  end
 end

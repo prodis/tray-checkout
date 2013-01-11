@@ -16,7 +16,6 @@ module Tray
 
       def request(path, params)
         xml = web_service.request!("#{URL}/#{path}", params)
-        #puts xml
         parser.response(xml)
       end
 
