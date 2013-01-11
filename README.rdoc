@@ -130,6 +130,283 @@ Creating a successful transaction:
   response.customer[:email] # => "pedro@bo.com.br"
   response.customer[:cpf]   # => "18565842673"
 
+== Configurations
+
+=== Timeout
+
+For default, the timeout for a request to Tray Checkout API is <b>5 seconds</b>. If Tray Checkout API does not respond, a <b>Timeout::Error</b> exception will be raised.
+You can configure this timeout using <b>Tray::Checkout</b> module.
+
+  Tray::Checkout.configure do |config|
+    config.request_timeout = 3  # It configures timeout to 3 seconds
+  end
+
+=== Log
+
+For default, each request to Tray Checkout API is logged to STDOUT, with <b>:info</b> log level, using the gem {LogMe}[http://github.com/prodis/log-me].
+
+Log example:
+  I, [2013-01-11T00:55:10.531780 #22692]  INFO -- : Tray-Checkout Request:
+  POST http://api.sandbox.checkout.tray.com.br/api/v1/transactions/get_by_token
+  token=522045453u5uu32e0u8014f060uuu5uu
+
+  I, [2013-01-11T00:55:10.750308 #22692]  INFO -- : Tray-Checkout Response:
+  HTTP/1.1 200 OK
+  <?xml version="1.0" encoding="UTF-8"?>
+  <transaction>
+    <data_response>
+      <transaction>
+        <order_number>F4326</order_number>
+        <free nil="true"/>
+        <transaction_id type="integer">632</transaction_id>
+        <status_name>Aguardando Pagamento</status_name>
+        <status_id type="integer">4</status_id>
+        <date_transaction>2012-12-27T10:26:21</date_transaction>
+        <split type="integer">1</split>
+        <price_payment type="decimal">37.86</price_payment>
+        <date_payment></date_payment>
+        <transaction_token>522045453u5uu32e0u8014f060uuu5uu</transaction_token>
+        <sub_store nil="true"/>
+        <available_payment_methods nil="true"/>
+        <url_notification>http://prodis.blog.br/tray_notification</url_notification>
+        <url_css nil="true"/>
+        <url_shipping nil="true"/>
+        <url_stock nil="true"/>
+        <url_success nil="true"/>
+        <url_process nil="true"/>
+        <url_cancel nil="true"/>
+        <schedule_credit></schedule_credit>
+        <price_seller type="decimal">35.05</price_seller>
+        <price_original type="decimal">37.86</price_original>
+        <price_additional type="decimal">0.0</price_additional>
+        <price_discount type="decimal">0.0</price_discount>
+        <shipping_price type="decimal">5.88</shipping_price>
+        <shipping_type>PAC</shipping_type>
+        <payment>
+          <price_payment type="decimal">37.86</price_payment>
+          <payment_response></payment_response>
+          <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu</url_payment>
+          <date_approval></date_approval>
+          <tid></tid>
+          <split type="integer">1</split>
+          <date_payment></date_payment>
+          <payment_method_id type="integer">6</payment_method_id>
+          <payment_method_name>Boleto Bancario</payment_method_name>
+          <card_id nil="true"/>
+          <number_proccess type="integer">869</number_proccess>
+          <linha_digitavel>34191.76007 00086.950144 50565.600009 1 55650000003786</linha_digitavel>
+        </payment>
+        <products type="array">
+          <product>
+            <code>LOGO-8278</code>
+            <description>Logo Prodis</description>
+            <extra nil="true"/>
+            <price_unit type="decimal">10.99</price_unit>
+            <quantity type="decimal">2.0</quantity>
+            <sku_code nil="true"/>
+            <url_img nil="true"/>
+          </product>
+          <product>
+            <code>877</code>
+            <description>Outro produto</description>
+            <extra nil="true"/>
+            <price_unit type="decimal">10.0</price_unit>
+            <quantity type="decimal">1.0</quantity>
+            <sku_code nil="true"/>
+            <url_img nil="true"/>
+          </product>
+        </products>
+        <transaction_affiliates type="array"/>
+        <customer>
+          <name>Pedro Bonamides</name>
+          <cpf>18565842673</cpf>
+          <email>pedro@bo.com.br</email>
+          <addresses type="array">
+            <address>
+              <street>Avenida Pedro Alvares Cabral</street>
+              <number>123</number>
+              <neighborhood>Parque Ibirapuera</neighborhood>
+              <postal_code>04094050</postal_code>
+              <completion></completion>
+              <city>São Paulo</city>
+              <state>SP</state>
+            </address>
+          </addresses>
+          <contacts type="array">
+            <contact>
+              <contact_id type="integer">345</contact_id>
+              <value>1137654321</value>
+              <type_contact>H</type_contact>
+              <primary type="boolean">true</primary>
+            </contact>
+            <contact>
+              <contact_id type="integer">348</contact_id>
+              <value>1147654321</value>
+              <type_contact>H</type_contact>
+              <primary type="boolean">false</primary>
+            </contact>
+            <contact>
+              <contact_id type="integer">361</contact_id>
+              <value>1142360873</value>
+              <type_contact>H</type_contact>
+              <primary type="boolean">false</primary>
+            </contact>
+          </contacts>
+        </customer>
+      </transaction>
+    </data_response>
+    <message_response>
+      <message>success</message>
+    </message_response>
+  </transaction>
+
+If you configure log level to <b>:debug</b>, request and response HTTP headers will be logged too.
+  D, [2013-01-11T00:58:56.226742 #22692] DEBUG -- : Tray-Checkout Request:
+  POST http://api.sandbox.checkout.tray.com.br/api/v1/transactions/get_by_token
+  accept: */*
+  user-agent: Ruby
+  token=522045453u5uu32e0u8014f060uuu5uu
+
+  D, [2013-01-11T00:58:56.495131 #22692] DEBUG -- : Tray-Checkout Response:
+  HTTP/1.1 200 OK
+  content-type: application/xml; charset=utf-8
+  transfer-encoding: chunked
+  connection: close
+  status: 200
+  x-powered-by: Phusion Passenger (mod_rails/mod_rack) 3.0.18
+  x-ua-compatible: IE=Edge,chrome=1
+  etag: "f5466d3294e177f5bb5331d326283294"
+  cache-control: max-age=0, private, must-revalidate
+  x-request-id: 9d8b635650e69237a6a875971ead3bbb
+  x-runtime: 0.238734
+  date: Fri, 11 Jan 2013 03:58:56 GMT
+  x-rack-cache: invalidate, pass
+  server: nginx/1.2.5 + Phusion Passenger 3.0.18 (mod_rails/mod_rack)
+  <?xml version="1.0" encoding="UTF-8"?>
+  <transaction>
+    <data_response>
+      <transaction>
+        <order_number>F4326</order_number>
+        <free nil="true"/>
+        <transaction_id type="integer">632</transaction_id>
+        <status_name>Aguardando Pagamento</status_name>
+        <status_id type="integer">4</status_id>
+        <date_transaction>2012-12-27T10:26:21</date_transaction>
+        <split type="integer">1</split>
+        <price_payment type="decimal">37.86</price_payment>
+        <date_payment></date_payment>
+        <transaction_token>522045453u5uu32e0u8014f060uuu5uu</transaction_token>
+        <sub_store nil="true"/>
+        <available_payment_methods nil="true"/>
+        <url_notification>http://prodis.blog.br/tray_notification</url_notification>
+        <url_css nil="true"/>
+        <url_shipping nil="true"/>
+        <url_stock nil="true"/>
+        <url_success nil="true"/>
+        <url_process nil="true"/>
+        <url_cancel nil="true"/>
+        <schedule_credit></schedule_credit>
+        <price_seller type="decimal">35.05</price_seller>
+        <price_original type="decimal">37.86</price_original>
+        <price_additional type="decimal">0.0</price_additional>
+        <price_discount type="decimal">0.0</price_discount>
+        <shipping_price type="decimal">5.88</shipping_price>
+        <shipping_type>PAC</shipping_type>
+        <payment>
+          <price_payment type="decimal">37.86</price_payment>
+          <payment_response></payment_response>
+          <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/u9uuu8731319u59u3073u9011uu6u6uu</url_payment>
+          <date_approval></date_approval>
+          <tid></tid>
+          <split type="integer">1</split>
+          <date_payment></date_payment>
+          <payment_method_id type="integer">6</payment_method_id>
+          <payment_method_name>Boleto Bancario</payment_method_name>
+          <card_id nil="true"/>
+          <number_proccess type="integer">869</number_proccess>
+          <linha_digitavel>34191.76007 00086.950144 50565.600009 1 55650000003786</linha_digitavel>
+        </payment>
+        <products type="array">
+          <product>
+            <code>LOGO-8278</code>
+            <description>Logo Prodis</description>
+            <extra nil="true"/>
+            <price_unit type="decimal">10.99</price_unit>
+            <quantity type="decimal">2.0</quantity>
+            <sku_code nil="true"/>
+            <url_img nil="true"/>
+          </product>
+          <product>
+            <code>877</code>
+            <description>Outro produto</description>
+            <extra nil="true"/>
+            <price_unit type="decimal">10.0</price_unit>
+            <quantity type="decimal">1.0</quantity>
+            <sku_code nil="true"/>
+            <url_img nil="true"/>
+          </product>
+        </products>
+        <transaction_affiliates type="array"/>
+        <customer>
+          <name>Pedro Bonamides</name>
+          <cpf>18565842673</cpf>
+          <email>pedro@bo.com.br</email>
+          <addresses type="array">
+            <address>
+              <street>Avenida Pedro Alvares Cabral</street>
+              <number>123</number>
+              <neighborhood>Parque Ibirapuera</neighborhood>
+              <postal_code>04094050</postal_code>
+              <completion></completion>
+              <city>São Paulo</city>
+              <state>SP</state>
+            </address>
+          </addresses>
+          <contacts type="array">
+            <contact>
+              <contact_id type="integer">345</contact_id>
+              <value>1137654321</value>
+              <type_contact>H</type_contact>
+              <primary type="boolean">true</primary>
+            </contact>
+            <contact>
+              <contact_id type="integer">348</contact_id>
+              <value>1147654321</value>
+              <type_contact>H</type_contact>
+              <primary type="boolean">false</primary>
+            </contact>
+            <contact>
+              <contact_id type="integer">361</contact_id>
+              <value>1142360873</value>
+              <type_contact>H</type_contact>
+              <primary type="boolean">false</primary>
+            </contact>
+          </contacts>
+        </customer>
+      </transaction>
+    </data_response>
+    <message_response>
+      <message>success</message>
+    </message_response>
+  </transaction>
+
+
+To disable the log, change log level and configure other log output, use <b>Tray::Checkout</b> module:
+
+  Tray::Checkout.configure do |config|
+    config.log_enabled = false   # It disables the log
+    config.log_level = :debug    # It changes log level
+    config.logger = Rails.logger # It uses Rails logger
+  end
+
+=== Configuration example
+
+  Tray::Checkout.configure do |config|
+    config.log_level = :debug
+    config.logger = Rails.logger
+    config.request_timeout = 3
+  end
+
 
 == Author
 - {Fernando Hamasaki (prodis)}[http://prodis.blog.br]
@@ -155,7 +432,7 @@ Creating a successful transaction:
 
 http://prodis.net.br/images/prodis_150.gif
 
-Copyright (c) 2012 Prodis
+Copyright (c) 2012-2013 Prodis
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -11,3 +11,7 @@ RSpec.configure do |config|
 end
 
 WebMock.disable_net_connect!
+
+Tray::Checkout.configure do |config|
+  config.log_enabled = false
+end
