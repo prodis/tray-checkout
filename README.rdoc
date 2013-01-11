@@ -132,8 +132,17 @@ Creating a successful transaction:
 
 == Configurations
 
-== Token Account
+=== Environment
+Tray Checkout API works with two environments: <b>production</b> and <b>sandbox</b>. To config the environment use <b>Tray::Checkout</b> module.
+Default environment is <b>:production</b>.
+
+  Tray::Checkout.configure do |config|
+    config.environment = :sandbox
+  end
+
+=== Token Account
 To create transactions is necessary to provide a <b>token account</b>. You can supply it in Tray::Checkout::Transaction#create method params, for each method call, or to config token account once using <b>Tray::Checkout</b> module.
+
   Tray::Checkout.configure do |config|
     config.token_account = "123u5uu9ef36f7u"
   end
@@ -244,18 +253,6 @@ Log example:
               <value>1137654321</value>
               <type_contact>H</type_contact>
               <primary type="boolean">true</primary>
-            </contact>
-            <contact>
-              <contact_id type="integer">348</contact_id>
-              <value>1147654321</value>
-              <type_contact>H</type_contact>
-              <primary type="boolean">false</primary>
-            </contact>
-            <contact>
-              <contact_id type="integer">361</contact_id>
-              <value>1142360873</value>
-              <type_contact>H</type_contact>
-              <primary type="boolean">false</primary>
             </contact>
           </contacts>
         </customer>
@@ -375,18 +372,6 @@ If you configure log level to <b>:debug</b>, request and response HTTP headers w
               <type_contact>H</type_contact>
               <primary type="boolean">true</primary>
             </contact>
-            <contact>
-              <contact_id type="integer">348</contact_id>
-              <value>1147654321</value>
-              <type_contact>H</type_contact>
-              <primary type="boolean">false</primary>
-            </contact>
-            <contact>
-              <contact_id type="integer">361</contact_id>
-              <value>1142360873</value>
-              <type_contact>H</type_contact>
-              <primary type="boolean">false</primary>
-            </contact>
           </contacts>
         </customer>
       </transaction>
@@ -405,13 +390,14 @@ To disable the log, change log level and configure other log output, use <b>Tray
     config.logger = Rails.logger # It uses Rails logger
   end
 
-=== Configuration example
+=== A configuration example
 
   Tray::Checkout.configure do |config|
+    config.environment = :sandbox
+    config.token_account = "123u5uu9ef36f7u"
+    config.request_timeout = 3
     config.log_level = :debug
     config.logger = Rails.logger
-    config.request_timeout = 3
-    config.token_account = "123u5uu9ef36f7u"
   end
 
 

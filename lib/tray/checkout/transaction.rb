@@ -2,8 +2,6 @@
 module Tray
   module Checkout
     class Transaction
-      URL = "http://api.sandbox.checkout.tray.com.br/api/v1/transactions"
-
       def get(token)
         request("get_by_token", { token: token })
       end
@@ -15,7 +13,7 @@ module Tray
       private
 
       def request(path, params)
-        xml = web_service.request!("#{URL}/#{path}", params)
+        xml = web_service.request!("#{Tray::Checkout.api_url}/#{path}", params)
         parser.response(xml)
       end
 

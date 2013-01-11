@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 def mock_request_for(response)
-  url = Regexp.new(Tray::Checkout::Transaction::URL)
+  url = Regexp.new(Tray::Checkout.api_url)
   WebMock::API.stub_request(:post, url).to_return(:status => 200, :body => body_for(response))
 end
 

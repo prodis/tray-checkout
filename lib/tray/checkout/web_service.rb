@@ -23,8 +23,13 @@ module Tray
 
       def build_http(uri)
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = uri.ssl?
         http.open_timeout = Tray::Checkout.request_timeout
+
+        if uri.ssl?
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+
         http
       end
 

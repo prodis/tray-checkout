@@ -7,7 +7,7 @@ describe Tray::Checkout::WebService do
 
     it "returns XML response" do
       mock_request_for("<xml><fake></fake>")
-      url = Tray::Checkout::Transaction::URL
+      url = Tray::Checkout.api_url
       params = { token: "qwe123asd456poi098lkj765" }
       web_service.request!(url, params).should eql "<xml><fake></fake>"
     end

@@ -22,7 +22,7 @@ describe Tray::Checkout do
 
   describe "#token_account" do
     it "default is nil" do
-      Tray::Checkout::token_account.should be_nil
+      Tray::Checkout.token_account.should be_nil
     end
 
     context "when set token account" do
@@ -34,6 +34,28 @@ describe Tray::Checkout do
 
       it "returns token account" do
         Tray::Checkout.token_account.should == "123u5uu9ef36f7u"
+      end
+    end
+  end
+
+  describe "#environment" do
+    it "default is production" do
+      Tray::Checkout.environment.should == :production
+    end
+
+    { production: "https://api.checkout.tray.com.br/api/transactions",
+      sandbox:    "http://api.sandbox.checkout.tray.com.br/api/v1/transactions"
+    }.each do |environment, url|
+      context "when environment is #{environment}" do
+        around do |example|
+          Tray::Checkout.configure { |config| config.environment = environment }
+          example.run
+          Tray::Checkout.configure { |config| config.environment = :production }
+        end
+
+        it "returns correct API URL" do
+          Tray::Checkout.api_url.should == url
+        end
       end
     end
   end
