@@ -46,10 +46,10 @@ Getting an existing transaction:
 
 When the transaction is not found:
   response = transaction.get("xxxxx00000yyyy")
-  response.success?                 # => false
-  response.transaction[:id]         # => nil
-  response[:errors].first[:code]    # => "003042"
-  response[:errors].first[:message] # => "Transação não encontrada"
+  response.success?               # => false
+  response.transaction[:id]       # => nil
+  response.errors.first[:code]    # => "003042"
+  response.errors.first[:message] # => "Transação não encontrada"
 
 Creating a successful transaction:
   response = transaction.create(
