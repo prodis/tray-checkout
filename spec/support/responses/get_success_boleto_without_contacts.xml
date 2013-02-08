@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction>
+  <data_response>
+    <transaction>
+      <transaction_token>db9b3265af6e7e19af8dd70e00d77383x</transaction_token>
+      <transaction_id type="integer">530</transaction_id>
+      <status_id type="integer">6</status_id>
+      <status_name>Aprovada</status_name>
+      <order_number>F2456</order_number>
+      <price_original type="decimal">33.21</price_original>
+      <price_payment type="decimal">33.21</price_payment>
+      <price_seller type="decimal">30.69</price_seller>
+      <price_additional type="decimal">0.0</price_additional>
+      <price_discount type="decimal">0.0</price_discount>
+      <shipping_type>Sedex</shipping_type>
+      <shipping_price type="decimal">1.23</shipping_price>
+      <split type="integer">1</split>
+      <date_transaction>2012-12-13T02:49:42</date_transaction>
+      <date_payment></date_payment>
+      <url_notification>http://prodis.blog.br/tray_notification</url_notification>
+      <url_cancel nil="true"></url_cancel>
+      <url_css nil="true"></url_css>
+      <url_process nil="true"></url_process>
+      <url_shipping nil="true"></url_shipping>
+      <url_stock nil="true"></url_stock>
+      <url_success nil="true"></url_success>
+      <available_payment_methods nil="true"></available_payment_methods>
+      <free nil="true"></free>
+      <schedule_credit></schedule_credit>
+      <sub_store nil="true"></sub_store>
+      <transaction_affiliates type="array"/>
+      <products type="array">
+        <product>
+          <code>LOGO-8278</code>
+          <quantity type="decimal">2.0</quantity>
+          <sku_code nil="true"></sku_code>
+          <price_unit type="decimal">10.99</price_unit>
+          <url_img nil="true"></url_img>
+          <description>Logo Prodis</description>
+          <extra nil="true"></extra>
+        </product>
+        <product>
+          <code>877</code>
+          <quantity type="decimal">1.0</quantity>
+          <sku_code nil="true"></sku_code>
+          <price_unit type="decimal">10.0</price_unit>
+          <url_img nil="true"></url_img>
+          <description>Outro produto</description>
+          <extra nil="true"></extra>
+        </product>
+      </products>
+      <payment>
+        <payment_method_id type="integer">6</payment_method_id>
+        <payment_method_name>Boleto Bancario</payment_method_name>
+        <price_payment type="decimal">33.21</price_payment>
+        <split type="integer">1</split>
+        <number_proccess type="integer">750</number_proccess>
+        <url_payment>http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e</url_payment>
+        <linha_digitavel>34191.76007 00075.091140 53021.450001 1 55510000003321</linha_digitavel>
+        <date_approval>2012-12-15T15:24:38</date_approval>
+        <date_payment>2012-12-15T15:23:05</date_payment>
+        <tid></tid>
+        <payment_response>Texto de resposta fake.</payment_response>
+        <card_id nil="true"></card_id>
+      </payment>
+      <customer>
+        <name>Pedro Bonamides</name>
+        <email>pedro@bo.com.br</email>
+        <cpf>18565842673</cpf>
+        <addresses type="array">
+          <address>
+            <street>Avenida Pedro Alvares Cabral</street>
+            <number>123</number>
+            <neighborhood>Parque Ibirapuera</neighborhood>
+            <postal_code>04094050</postal_code>
+            <completion></completion>
+            <city>São Paulo</city>
+            <state>SP</state>
+          </address>
+        </addresses>
+      </customer>
+    </transaction>
+  </data_response>
+  <message_response>
+    <message>success</message>
+  </message_response>
+</transaction>

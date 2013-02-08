@@ -83,10 +83,15 @@ module Tray
 
       def customer_map!(transaction)
         customer = transaction[:customer]
-        customer[:contacts].each do |contact|
-          contact[:type] = CONTACT_TYPE.invert[contact.delete(:type_contact)]
-          contact[:id] = contact.delete(:contact_id)
-          contact[:number] = contact.delete(:value)
+
+        if customer[:contacts]
+          customer[:contacts].each do |contact|
+            contact[:type] = CONTACT_TYPE.invert[contact.delete(:type_contact)]
+            contact[:id] = contact.delete(:contact_id)
+            contact[:number] = contact.delete(:value)
+          end
+        else
+          customer[:contacts] = []
         end
       end
 

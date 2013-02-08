@@ -127,6 +127,14 @@ describe Tray::Checkout::ResponseParser do
             end
           end
         end
+
+        context "without contacts" do
+          it "returns empty array" do
+            parser = Tray::Checkout::ResponseParser.new(body_for(:get_success_boleto_without_contacts))
+            response = parser.parse
+            response.customer[:contacts].should == []
+          end
+        end
       end
     end
 
