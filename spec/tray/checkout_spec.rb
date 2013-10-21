@@ -43,8 +43,8 @@ describe Tray::Checkout do
       Tray::Checkout.environment.should == :production
     end
 
-    { production: "https://api.checkout.tray.com.br/api/transactions",
-      sandbox:    "http://api.sandbox.checkout.tray.com.br/api/v1/transactions"
+    { production: "https://api.traycheckout.com.br/",
+      sandbox:    "http://api.sandbox.traycheckout.com.br/"
     }.each do |environment, url|
       context "when environment is #{environment}" do
         around do |example|

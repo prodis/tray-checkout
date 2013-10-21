@@ -15,9 +15,9 @@ module Tray
 
       def api_url
         if environment == :production
-          "https://api.checkout.tray.com.br/api/transactions"
+          "https://api.traycheckout.com.br/"
         else
-          "http://api.sandbox.checkout.tray.com.br/api/v1/transactions"
+          "http://api.sandbox.traycheckout.com.br/"
         end
       end
 
