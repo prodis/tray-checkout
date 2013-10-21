@@ -17,70 +17,51 @@ describe Tray::Checkout::ResponseParser do
       end
 
       context "returns transaction" do
-        { token: "db9b3265af6e7e19af8dd70e00d77383x",
-          id: 530,
-          status: :approved,
-          status_name: "Aprovada",
-          order_number: "F2456",
-          price_original: 33.21,
-          price_payment: 33.21,
-          price_seller: 30.69,
-          price_additional: 0.00,
-          price_discount: 0.00,
-          shipping_type: "Sedex",
-          shipping_price: 1.23,
-          split: 1,
-          url_notification: "http://prodis.blog.br/tray_notification",
-          transaction_token: nil,
-          transaction_id: nil,
-          status_id: nil
+        {
+          order_number: "1234567",
+          free: "Texto Interno",
+          status_name: "Em Recupera\\xC3\\xA7\\xC3\\xA3o",
+          status: :recovering,
+          id: 3856,
+          token: "4761d2e198ba6b60b45900a4d95482d5"
         }.each do |param, value|
           it param do
             response.transaction[param].should == value
           end
         end
-
-        it "date_transaction" do
-          date_transaction = response.transaction[:date_transaction]
-          date_transaction.should be_a(Time)
-          date_transaction.to_s.should == "2012-12-13 02:49:42 UTC"
-        end
       end
 
       context "returns payment" do
-        { method: :boleto,
-          method_name: "Boleto Bancario",
-          price: 33.21,
+        {
+          tid: nil,
           split: 1,
-          number_proccess: 750,
-          response: "Texto de resposta fake.",
-          url: "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e",
-          linha_digitavel: "34191.76007 00075.091140 53021.450001 1 55510000003321",
-          payment_method_id: nil,
-          payment_method_name: nil,
-          price_payment: nil,
-          url_payment: nil,
-          payment_response: nil
+          linha_digitavel: "34191.76007 00534.020144 50565.600009 6 58600000219999",
+          method: :boleto,
+          method_name: "Boleto Bancario"
         }.each do |param, value|
           it param do
             response.payment[param].should == value
           end
         end
 
-        { date_approval: "2012-12-15 15:24:38 UTC",
-          date_payment: "2012-12-15 15:23:05 UTC"
+        {
+          price_original: '2199.99',
+          price: '2199.99'
         }.each do |param, value|
           it param do
-            response.payment[param].should be_a(Time)
             response.payment[param].to_s.should == value
           end
         end
       end
 
       context "returns customer" do
-        { name: "Pedro Bonamides",
-          email: "pedro@bo.com.br",
-          cpf: "18565842673"
+        {
+          name: "Nome do Cliente",
+          cpf: "98489882380",
+          email: "emaildo@cliente.com.br",
+          company_name: nil,
+          trade_name: nil,
+          cnpj: nil
         }.each do |param, value|
           it param do
             response.customer[param].should == value
@@ -88,12 +69,13 @@ describe Tray::Checkout::ResponseParser do
         end
 
         context "address with" do
-          { street: "Avenida Pedro Alvares Cabral",
-            number: "123",
-            neighborhood: "Parque Ibirapuera",
-            postal_code: "04094050",
+          {
+            street: "Av Paulista",
+            number: "1001",
+            neighborhood: "Centro",
+            postal_code: "04001001",
             completion: nil,
-            city: "São Paulo",
+            city: "S\\xC3\\xA3o Paulo",
             state: "SP"
           }.each do |param, value|
             it param do
@@ -103,21 +85,10 @@ describe Tray::Checkout::ResponseParser do
         end
 
         context "contacts with" do
-          [ { id: 345,
-              number: "1137654321",
-              type: :home,
-              primary: true,
-              contact_id: nil,
-              value: nil,
-              type_contact: nil
-            },
-            { id: 348,
-              number: "11987654321",
-              type: :mobile,
-              primary: false,
-              contact_id: nil,
-              value: nil,
-              type_contact: nil
+          [ {
+              number: "11998761234",
+              id: nil,
+              type: :mobile
             }
           ].each_with_index do |contacts, i|
             contacts.each do |param, value|
@@ -154,8 +125,8 @@ describe Tray::Checkout::ResponseParser do
       end
 
       context "returns error" do
-        { code: "003042",
-          message: "Transação não encontrada"
+        { code: "001001",
+          message: "Token inv&aacute;lido ou n&atilde;o encontrado"
         }.each do |param, value|
           it param do
             response.errors.first[param].should == value
@@ -180,10 +151,8 @@ describe Tray::Checkout::ResponseParser do
       end
 
       context "returns error" do
-        { code: "1",
-          message: "não pode ficar em branco",
-          message_complete: "Tipo não pode ficar em branco",
-          field: "person_addresses.type_address"
+        { code: "13",
+          message: "Tipo de Contato não está incluído na lista"
         }.each do |param, value|
           it param do
             response.errors.first[param].should == value

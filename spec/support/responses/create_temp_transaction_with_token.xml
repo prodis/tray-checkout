@@ -1,0 +1,28 @@
+<tmp_transaction>
+	<script id="tinyhippos-injected"/>
+	<message_response>
+		<message>success</message>
+	</message_response>
+	<data_response>
+		<token_transaction>a906bf32cb59060dfc90769524f99d5a</token_transaction>
+		<url_car>
+			http://checkout.sandbox.tray.com.br/payment/car/v1/
+		</url_car>
+		<transaction_products type="array">
+			<transaction_product>
+				<code>teste</code>
+				<img>
+					http://catnross.com/wp-content/uploads/2011/08/product1.jpg
+				</img>
+				<sku_code nil="true"/>
+				<description>produto teste</description>
+				<extra nil="true"/>
+				<price_unit type="decimal">10.0</price_unit>
+				<quantity type="decimal">5.0</quantity>
+				<weight type="decimal">300.0</weight>
+				<id type="integer">4502</id>
+				<type_product nil="true"/>
+			</transaction_product>
+		</transaction_products>
+	</data_response>
+</tmp_transaction>

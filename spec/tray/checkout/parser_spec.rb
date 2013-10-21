@@ -6,7 +6,7 @@ describe Tray::Checkout::Parser do
 
   describe "#response" do
     before :each do
-      @xml = body_for(:get_success_boleto)
+      @xml = body_for(:get_success_mastercard)
       @response_parser = Tray::Checkout::ResponseParser.new(@xml)
       @response = Tray::Checkout::Response.new
       Tray::Checkout::ResponseParser.stub(:new).and_return(@response_parser)
