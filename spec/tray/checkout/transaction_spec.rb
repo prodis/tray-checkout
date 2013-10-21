@@ -3,12 +3,71 @@ require 'spec_helper'
 
 describe Tray::Checkout::Transaction do
   let(:transaction) { Tray::Checkout::Transaction.new }
+  let(:params) {
+    {
+      token_account: "8bfe5ddcb77207b",
+      customer: {
+        name: "Nome do Cliente",
+        cpf: "12312312312",
+        email: "emaildo@cliente.com.br",
+        sex: :male,
+        marital_status: :single,
+        contacts: [
+          { type: :mobile,
+            number: "11998761234"
+          }
+        ],
+        addresses: [
+          { type: :billing,
+            street: "Av Paulista",
+            number: "1001",
+            neighborhood: "Centro",
+            postal_code: "04001001",
+            city: "São Paulo",
+            state: "SP"
+          }
+        ]
+      },
+      transaction: {
+        order_number: "1234567",
+        free: "Texto Interno",
+        url_notification: "http://prodis.blog.br/tray_notification",
+        products: [
+          {
+            quantity: "1",
+            price_unit: "1999.99",
+            description: "Notebook Branco",
+            quantity: "1",
+            price_unit: "2199.99"
+          }
+        ]
+      },
+      payment: {
+        method: :mastercard,
+        split: 12,
+        card_name: "Nome Impresso",
+        card_number: "4073020000000002",
+        card_expdate_month: "01",
+        card_expdate_year: "2017",
+        cvv: "123"
+      }
+    }
+  }
+
+  before :all do
+    Tray::Checkout.environment = :sandbox
+  end
+
+  after :all do
+    Tray::Checkout.environment = :production
+  end
 
   describe "#get" do
     context "when transaction is found" do
       before :each do
-        mock_request_for(:get_success_boleto)
-        @response = transaction.get("db9b3265af6e7e19af8dd70e00d77383x")
+        VCR.use_cassette 'model/get_success_boleto' do
+          @response = transaction.get("4761d2e198ba6b60b45900a4d95482d5", "8bfe5ddcb77207b")
+        end
       end
 
       it "returns success" do
@@ -16,25 +75,25 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:token].should == "db9b3265af6e7e19af8dd70e00d77383x"
-        @response.transaction[:id].should == 530
+        @response.transaction[:token].should == "4761d2e198ba6b60b45900a4d95482d5"
+        @response.transaction[:id].should == 3856
       end
 
       it "returns payment data" do
         @response.payment[:method_name].should == "Boleto Bancario"
-        @response.payment[:url].should == "http://checkout.sandbox.tray.com.br/payment/billet/d2baa84c13f23addde401c8e1426396e"
       end
 
       it "returns customer data" do
-        @response.customer[:name].should == "Pedro Bonamides"
-        @response.customer[:email].should == "pedro@bo.com.br"
+        @response.customer[:name].should == "Nome do Cliente"
+        @response.customer[:email].should == "emaildo@cliente.com.br"
       end
     end
 
     context "when transaction is not found" do
       before :each do
-        mock_request_for(:get_failure_not_found)
-        @response = transaction.get("987asd654lkj321qwe098poi")
+        VCR.use_cassette 'model/get_failure_not_found' do
+          @response = transaction.get("987asd654lkj321qwe098poi", "8bfe5ddcb77207b")
+        end
       end
 
       it "does not return success" do
@@ -49,10 +108,14 @@ describe Tray::Checkout::Transaction do
   end
 
   describe "#create" do
-    context "successful" do
+    context "successful payment slip" do
       before :each do
-        mock_request_for(:create_success_mastercard)
-        @response = transaction.create(fake: "fake params")
+        VCR.use_cassette 'model/create_success_boleto' do
+          new_params = params
+          new_params[:payment] = { method: :boleto }
+
+          @response = transaction.create(new_params)
+        end
       end
 
       it "returns success" do
@@ -60,25 +123,53 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:token].should == "fc739f786425e34010481dcc2939e4bdx"
-        @response.transaction[:status].should == :approved
+        @response.transaction[:token].should == "4761d2e198ba6b60b45900a4d95482d5"
+        @response.transaction[:status].should == :recovering
+      end
+
+      it "returns payment data" do
+        @response.payment[:method].should == :boleto
+        @response.payment[:tid].should == nil
+      end
+
+      it "returns customer data" do
+        @response.customer[:name].should == "Nome do Cliente"
+      end
+    end
+
+    context "successful credit card" do
+      before :each do
+        VCR.use_cassette 'model/create_success_mastercard' do
+          @response = transaction.create(params)
+        end
+      end
+
+      it "returns success" do
+        @response.success?.should be_true
+      end
+
+      it "returns transaction data" do
+        @response.transaction[:token].should == "4761d2e198ba6b60b45900a4d95482d5"
+        @response.transaction[:status].should == :recovering
       end
 
       it "returns payment data" do
         @response.payment[:method].should == :mastercard
-        @response.payment[:tid].should == "1355409331"
+        @response.payment[:tid].should == '1233'
       end
 
       it "returns customer data" do
-        @response.customer[:name].should == "Pedro Bonamides"
-        @response.customer[:email].should == "pedro@bo.com.br"
+        @response.customer[:name].should == "Nome do Cliente"
       end
     end
 
-    context "unsuccess" do
+    context "unsuccess payment slip" do
       before :each do
-        mock_request_for(:create_failure_validation_errors)
-        @response = transaction.create(fake: "fake params")
+        params[:customer][:contacts][0].delete(:type)
+
+        VCR.use_cassette 'model/create_failure_validation_errors' do
+          @response = transaction.create(params)
+        end
       end
 
       it "does not return success" do
@@ -86,9 +177,9 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns error" do
-        @response.errors.first[:code].should == "1"
-        @response.errors.first[:message].should == "não pode ficar em branco"
-        @response.errors.first[:message_complete].should == "Tipo não pode ficar em branco"
+        @response.errors.first[:code].should == "13"
+        @response.errors.first[:message].should == "não está incluído na lista"
+        @response.errors.first[:message_complete].should == "Tipo de Contato não está incluído na lista"
       end
     end
   end

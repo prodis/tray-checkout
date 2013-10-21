@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.sandbox.traycheckout.com.br//v2/transactions/pay_complete
+    body:
+      encoding: US-ASCII
+      string: customer%5Baddresses%5D%5B%5D%5Bcity%5D=S%C3%A3o+Paulo&customer%5Baddresses%5D%5B%5D%5Bneighborhood%5D=Centro&customer%5Baddresses%5D%5B%5D%5Bnumber%5D=1001&customer%5Baddresses%5D%5B%5D%5Bpostal_code%5D=04001001&customer%5Baddresses%5D%5B%5D%5Bstate%5D=SP&customer%5Baddresses%5D%5B%5D%5Bstreet%5D=Av+Paulista&customer%5Baddresses%5D%5B%5D%5Btype%5D=billing&customer%5Baddresses%5D%5B%5D%5Btype_address%5D=B&customer%5Bcontacts%5D%5B%5D%5Bnumber_contact%5D=11998761234&customer%5Bcontacts%5D%5B%5D%5Btype%5D=mobile&customer%5Bcontacts%5D%5B%5D%5Btype_contact%5D=M&customer%5Bcpf%5D=12312312312&customer%5Bemail%5D=emaildo%40cliente.com.br&customer%5Bgender%5D=M&customer%5Bmarital_status%5D=single&customer%5Bname%5D=Nome+do+Cliente&customer%5Brelationship%5D=S&customer%5Bsex%5D=male&payment%5Bmethod%5D=boleto&payment%5Bpayment_method_id%5D=6&token_account=8bfe5ddcb77207b&transaction%5Bfree%5D=Texto+Interno&transaction%5Border_number%5D=1234567&transaction%5Burl_notification%5D=http%3A%2F%2Fprodis.blog.br%2Ftray_notification&transaction_product%5B%5D%5Bdescription%5D=Notebook+Branco&transaction_product%5B%5D%5Bprice_unit%5D=2199.99&transaction_product%5B%5D%5Bquantity%5D=1
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS40LjE=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        TW9uLCAyMSBPY3QgMjAxMyAxODo0Nzo1OSBHTVQ=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24veG1sOyBjaGFyc2V0PXV0Zi04
+      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
+      - !binary |-
+        Y2h1bmtlZA==
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "U3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "WC1VYS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjIwNzg2MjdmNWNlYThjMjBkYzExZDk2MzYxZjc4NGYxIg==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0wLCBwcml2YXRlLCBtdXN0LXJldmFsaWRhdGU=
+      !binary "WC1SZXF1ZXN0LUlk":
+      - !binary |-
+        ODMwMWE0ZjgzYmYzMWE0ZGM3Y2Y0NmUwZWM5ZGUzMWE=
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        My40MjAyOTc=
+      !binary "WC1SYWNrLUNhY2hl":
+      - !binary |-
+        aW52YWxpZGF0ZSwgcGFzcw==
+      !binary "WC1Qb3dlcmVkLUJ5":
+      - !binary |-
+        UGh1c2lvbiBQYXNzZW5nZXIgNC4wLjE0
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PHJlc3BvbnNlPgogIDxtZXNzYWdlX3Jlc3BvbnNlPgogICAgPG1lc3NhZ2U+
+        c3VjY2VzczwvbWVzc2FnZT4KICA8L21lc3NhZ2VfcmVzcG9uc2U+CiAgPGRh
+        dGFfcmVzcG9uc2U+CiAgICA8dHJhbnNhY3Rpb24+CiAgICAgIDxvcmRlcl9u
+        dW1iZXI+MTIzNDU2Nzwvb3JkZXJfbnVtYmVyPgogICAgICA8ZnJlZT5UZXh0
+        byBJbnRlcm5vPC9mcmVlPgogICAgICA8dHJhbnNhY3Rpb25faWQgdHlwZT0i
+        aW50ZWdlciI+Mzg1NjwvdHJhbnNhY3Rpb25faWQ+CiAgICAgIDxzdGF0dXNf
+        bmFtZT5FbSBSZWN1cGVyYcOnw6NvPC9zdGF0dXNfbmFtZT4KICAgICAgPHN0
+        YXR1c19pZCB0eXBlPSJpbnRlZ2VyIj44ODwvc3RhdHVzX2lkPgogICAgICA8
+        dG9rZW5fdHJhbnNhY3Rpb24+NDc2MWQyZTE5OGJhNmI2MGI0NTkwMGE0ZDk1
+        NDgyZDU8L3Rva2VuX3RyYW5zYWN0aW9uPgogICAgICA8cGF5bWVudD4KICAg
+        ICAgICA8cHJpY2VfcGF5bWVudCB0eXBlPSJkZWNpbWFsIj4yMTk5Ljk5PC9w
+        cmljZV9wYXltZW50PgogICAgICAgIDxwcmljZV9vcmlnaW5hbCB0eXBlPSJk
+        ZWNpbWFsIj4yMTk5Ljk5PC9wcmljZV9vcmlnaW5hbD4KICAgICAgICA8cGF5
+        bWVudF9yZXNwb25zZT48L3BheW1lbnRfcmVzcG9uc2U+CiAgICAgICAgPHVy
+        bF9wYXltZW50Pmh0dHA6Ly9ndHcuc2FuZGJveC5jaGVja291dC50cmF5LmNv
+        bS5ici9hcGkvcHJpbnQvNmQ4NDBkMWFlOWE2NDU1YjVkZGIzNjQ5OTg5NGEy
+        MmE8L3VybF9wYXltZW50PgogICAgICAgIDx0aWQgbmlsPSJ0cnVlIi8+CiAg
+        ICAgICAgPHNwbGl0IHR5cGU9ImludGVnZXIiPjE8L3NwbGl0PgogICAgICAg
+        IDxwYXltZW50X21ldGhvZF9pZCB0eXBlPSJpbnRlZ2VyIj42PC9wYXltZW50
+        X21ldGhvZF9pZD4KICAgICAgICA8cGF5bWVudF9tZXRob2RfbmFtZT5Cb2xl
+        dG8gQmFuY2FyaW88L3BheW1lbnRfbWV0aG9kX25hbWU+CiAgICAgICAgPGxp
+        bmhhX2RpZ2l0YXZlbD4zNDE5MS43NjAwNyAwMDUzNS42ODAxNDQgNTA1NjUu
+        NjAwMDA5IDIgNTg2MzAwMDAyMTk5OTk8L2xpbmhhX2RpZ2l0YXZlbD4KICAg
+        ICAgPC9wYXltZW50PgogICAgICA8Y3VzdG9tZXI+CiAgICAgICAgPG5hbWU+
+        Tm9tZSBkbyBDbGllbnRlPC9uYW1lPgogICAgICAgIDxjb21wYW55X25hbWU+
+        PC9jb21wYW55X25hbWU+CiAgICAgICAgPHRyYWRlX25hbWU+PC90cmFkZV9u
+        YW1lPgogICAgICAgIDxjbnBqPjwvY25waj4KICAgICAgPC9jdXN0b21lcj4K
+        ICAgIDwvdHJhbnNhY3Rpb24+CiAgPC9kYXRhX3Jlc3BvbnNlPgo8L3Jlc3Bv
+        bnNlPgo=
+    http_version: 
+  recorded_at: Mon, 21 Oct 2013 18:47:59 GMT
+recorded_with: VCR 2.6.0

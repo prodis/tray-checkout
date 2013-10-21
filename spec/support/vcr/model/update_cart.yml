@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.sandbox.traycheckout.com.br//v1/tmp_transactions/create
+    body:
+      encoding: US-ASCII
+      string: postal_code_seller=18523698&token_account=8bfe5ddcb77207b&token_transaction=a906bf32cb59060dfc90769524f99d5a&transaction%5Bfree%5D=Texto+Interno&transaction%5Border_number%5D=1234567&transaction%5Burl_notification%5D=http%3A%2F%2Fprodis.blog.br%2Ftray_notification&transaction_product%5B%5D%5Bcode%5D=teste&transaction_product%5B%5D%5Bdescription%5D=Notebook+Branco&transaction_product%5B%5D%5Bprice_unit%5D=2199.99&transaction_product%5B%5D%5Bquantity%5D=1&transaction_product%5B%5D%5Burl_img%5D=http%3A%2F%2Fcatnross.com%2Fwp-content%2Fuploads%2F2011%2F08%2Fproduct1.jpg&transaction_product%5B%5D%5Bweight%5D=300
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.4.1
+      Date:
+      - Mon, 21 Oct 2013 18:47:53 GMT
+      Content-Type:
+      - application/xml; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - ! '"82166538499c6ceb9dc32572fce6339e"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8b4eefcbaa6d0f02c4367e14ea2cb0c7
+      X-Runtime:
+      - '0.333296'
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Powered-By:
+      - Phusion Passenger 4.0.14
+    body:
+      encoding: US-ASCII
+      string: ! "<tmp_transaction>\n  <message_response>\n    <message>success</message>\n
+        \ </message_response>\n  <data_response>\n    <token_transaction>a906bf32cb59060dfc90769524f99d5a</token_transaction>\n
+        \   <url_car>http://checkout.sandbox.tray.com.br/payment/car/v1/</url_car>\n
+        \   <transaction_products type=\"array\">\n      <transaction_product>\n        <code>teste</code>\n
+        \       <img>http://catnross.com/wp-content/uploads/2011/08/product1.jpg</img>\n
+        \       <sku_code nil=\"true\"/>\n        <description>Notebook Branco</description>\n
+        \       <extra nil=\"true\"/>\n        <price_unit type=\"decimal\">2199.99</price_unit>\n
+        \       <quantity type=\"decimal\">25.0</quantity>\n        <weight type=\"decimal\">300.0</weight>\n
+        \       <id type=\"integer\">4502</id>\n        <type_product nil=\"true\"/>\n
+        \     </transaction_product>\n    </transaction_products>\n  </data_response>\n</tmp_transaction>\n"
+    http_version: 
+  recorded_at: Mon, 21 Oct 2013 18:47:53 GMT
+recorded_with: VCR 2.6.0

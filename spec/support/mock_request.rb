@@ -13,7 +13,8 @@ def body_for(response)
        :get_failure_not_found,
        :create_success_boleto,
        :create_success_mastercard,
-       :create_failure_validation_errors
+       :create_failure_validation_errors,
+       :create_temp_transaction_with_token
     read_file_for(response)
   else
     response
