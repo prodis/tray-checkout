@@ -22,6 +22,7 @@ module Tray
 
       def customer_map!(customer)
         return unless customer
+        customer[:birth_date] = customer[:birth_date].strftime("%d/%m/%Y") if customer[:birth_date] && customer[:birth_date].is_a?(Date)
         customer[:gender] = SEX[customer[:sex]] if customer[:sex]
         customer[:relationship] = MARITAL_STATUS[customer[:marital_status]] if customer[:marital_status]
         contacts_map!  customer[:contacts]

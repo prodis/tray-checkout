@@ -12,12 +12,12 @@
         <price_original type="decimal">2199.99</price_original>
         <price_payment type="decimal">2199.99</price_payment>
         <payment_response></payment_response>
-        <url_payment>http://gtw.sandbox.checkout.tray.com.br/api/print/c3cc28c28858b2e29d2b4c2a38a85e0b</url_payment>
+        <url_payment>http://gtw.sandbox.checkout.tray.com.br/api/print/0b525e9dbef558690477b815118aa033</url_payment>
         <tid nil="true"/>
         <split type="integer">1</split>
         <payment_method_id type="integer">6</payment_method_id>
         <payment_method_name>Boleto Bancario</payment_method_name>
-        <linha_digitavel>34191.76007 00534.020144 50565.600009 6 58600000219999</linha_digitavel>
+        <linha_digitavel>34191.76007 00536.260144 50565.600009 6 58630000219999</linha_digitavel>
       </payment>
       <customer>
         <name>Nome do Cliente</name>

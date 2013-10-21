@@ -19,7 +19,7 @@ http_interactions:
       Server:
       - nginx/1.4.1
       Date:
-      - Mon, 21 Oct 2013 18:47:53 GMT
+      - Mon, 21 Oct 2013 19:19:29 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -31,13 +31,13 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Etag:
-      - ! '"82166538499c6ceb9dc32572fce6339e"'
+      - ! '"14c104773dde992f06a38ac086d698e0"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 8b4eefcbaa6d0f02c4367e14ea2cb0c7
+      - 8b870841119f2e333a63b5e7535cd1ce
       X-Runtime:
-      - '0.333296'
+      - '0.421474'
       X-Rack-Cache:
       - invalidate, pass
       X-Powered-By:
@@ -51,9 +51,9 @@ http_interactions:
         \       <img>http://catnross.com/wp-content/uploads/2011/08/product1.jpg</img>\n
         \       <sku_code nil=\"true\"/>\n        <description>Notebook Branco</description>\n
         \       <extra nil=\"true\"/>\n        <price_unit type=\"decimal\">2199.99</price_unit>\n
-        \       <quantity type=\"decimal\">25.0</quantity>\n        <weight type=\"decimal\">300.0</weight>\n
+        \       <quantity type=\"decimal\">26.0</quantity>\n        <weight type=\"decimal\">300.0</weight>\n
         \       <id type=\"integer\">4502</id>\n        <type_product nil=\"true\"/>\n
         \     </transaction_product>\n    </transaction_products>\n  </data_response>\n</tmp_transaction>\n"
     http_version: 
-  recorded_at: Mon, 21 Oct 2013 18:47:53 GMT
+  recorded_at: Mon, 21 Oct 2013 19:19:29 GMT
 recorded_with: VCR 2.6.0

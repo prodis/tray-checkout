@@ -19,7 +19,7 @@ http_interactions:
       Server:
       - nginx/1.4.1
       Date:
-      - Mon, 21 Oct 2013 18:47:53 GMT
+      - Mon, 21 Oct 2013 19:19:29 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -31,13 +31,13 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Etag:
-      - ! '"df50b97bc8a9f2d096666e465e09bb75"'
+      - ! '"29c4801c906d659067301dcab636c8ff"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 919195d90a7d74f7cc0d5af4bfe7f01f
+      - 63f9d2053f9bfbc00914166b68174aa4
       X-Runtime:
-      - '0.088067'
+      - '0.080716'
       X-Rack-Cache:
       - invalidate, pass
       X-Powered-By:
@@ -45,15 +45,15 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! "<tmp_transaction>\n  <message_response>\n    <message>success</message>\n
-        \ </message_response>\n  <data_response>\n    <token_transaction>b0a22fa0350af9fee98a8b688dcf841e</token_transaction>\n
+        \ </message_response>\n  <data_response>\n    <token_transaction>31d7b7f786b6aa5749e8358374b7068f</token_transaction>\n
         \   <url_car>http://checkout.sandbox.tray.com.br/payment/car/v1/</url_car>\n
         \   <transaction_products type=\"array\">\n      <transaction_product>\n        <code>teste</code>\n
         \       <img>http://catnross.com/wp-content/uploads/2011/08/product1.jpg</img>\n
         \       <sku_code nil=\"true\"/>\n        <description>Notebook Branco</description>\n
         \       <extra nil=\"true\"/>\n        <price_unit type=\"decimal\">2199.99</price_unit>\n
         \       <quantity type=\"decimal\">1.0</quantity>\n        <weight type=\"decimal\">300.0</weight>\n
-        \       <id type=\"integer\">4524</id>\n        <type_product nil=\"true\"/>\n
+        \       <id type=\"integer\">4526</id>\n        <type_product nil=\"true\"/>\n
         \     </transaction_product>\n    </transaction_products>\n  </data_response>\n</tmp_transaction>\n"
     http_version: 
-  recorded_at: Mon, 21 Oct 2013 18:47:53 GMT
+  recorded_at: Mon, 21 Oct 2013 19:19:29 GMT
 recorded_with: VCR 2.6.0

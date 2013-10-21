@@ -3,6 +3,53 @@ require 'spec_helper'
 
 describe Tray::Checkout::ResponseParser do
   describe "#parse" do
+    context "with success response from temp_transaction" do
+      let(:xml) { body_for :create_temp_transaction_with_token }
+      let(:parser) { Tray::Checkout::ResponseParser.new(xml) }
+      let(:response) { parser.parse }
+
+      it "returns success" do
+        response.success?.should be_true
+      end
+
+      context "returns transaction" do
+        {
+          token: "a906bf32cb59060dfc90769524f99d5a",
+          url_car: "\n\t\t\thttp://checkout.sandbox.tray.com.br/payment/car/v1/\n\t\t"
+        }.each do |param, value|
+          it param do
+            response.transaction[param].should == value
+          end
+        end
+      end
+
+      context "returns products" do
+        {
+          code: "teste",
+          img: "\n\t\t\t\t\thttp://catnross.com/wp-content/uploads/2011/08/product1.jpg\n\t\t\t\t",
+          sku_code: nil,
+          description: "produto teste",
+          extra: nil,
+          id: 4502,
+          type_product: nil
+        }.each do |param, value|
+          it param do
+            response.transaction[:products].first[param].should == value
+          end
+        end
+
+        {
+          price_unit: "10.0",
+          quantity: "5.0",
+          weight: "300.0"
+        }.each do |param, value|
+          it param do
+            response.transaction[:products].first[param].to_s.should == value
+          end
+        end
+      end
+    end
+
     context "with success response" do
       let(:xml) { body_for :get_success_boleto }
       let(:parser) { Tray::Checkout::ResponseParser.new(xml) }
@@ -35,7 +82,7 @@ describe Tray::Checkout::ResponseParser do
         {
           tid: nil,
           split: 1,
-          linha_digitavel: "34191.76007 00534.020144 50565.600009 6 58600000219999",
+          linha_digitavel: "34191.76007 00536.260144 50565.600009 6 58630000219999",
           method: :boleto,
           method_name: "Boleto Bancario"
         }.each do |param, value|

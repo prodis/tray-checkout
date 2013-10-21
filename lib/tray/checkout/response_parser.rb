@@ -72,6 +72,7 @@ module Tray
         transaction[:status] = TRANSACTION_STATUS.invert[transaction.delete(:status_id)] if transaction.has_key?(:status_id)
         transaction[:id] = transaction.delete(:transaction_id) if transaction.has_key?(:transaction_id)
         transaction[:token] = transaction.delete(:token_transaction) if transaction.has_key?(:token_transaction)
+        transaction[:products] = transaction.delete(:transaction_products) if transaction.has_key?(:transaction_products)
       end
 
       def payment_map!(transaction)

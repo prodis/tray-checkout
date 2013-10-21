@@ -10,6 +10,7 @@ describe Tray::Checkout::Transaction do
         name: "Nome do Cliente",
         cpf: "12312312312",
         email: "emaildo@cliente.com.br",
+        birth_date: '01/01/1900'.to_date,
         sex: :male,
         marital_status: :single,
         contacts: [
@@ -23,22 +24,30 @@ describe Tray::Checkout::Transaction do
             number: "1001",
             neighborhood: "Centro",
             postal_code: "04001001",
+            completion: "apto 11",
             city: "São Paulo",
             state: "SP"
           }
         ]
       },
       transaction: {
-        order_number: "1234567",
-        free: "Texto Interno",
+        available_payment_methods: '6',
+        order_number: "123456789",
+        shipping_type: "Sedex",
+        shipping_price: "15.00",
+        price_discount: "1.00",
+        price_additional: "1.00",
         url_notification: "http://prodis.blog.br/tray_notification",
+        free: "Texto Interno",
+        sub_store: "2",
         products: [
           {
-            quantity: "1",
-            price_unit: "1999.99",
             description: "Notebook Branco",
             quantity: "1",
-            price_unit: "2199.99"
+            price_unit: "1999.99",
+            code: "123",
+            sku_code: "72628",
+            extra: "Produto novo"
           }
         ]
       },
@@ -50,7 +59,13 @@ describe Tray::Checkout::Transaction do
         card_expdate_month: "01",
         card_expdate_year: "2017",
         cvv: "123"
-      }
+      },
+      affiliates: [
+        {
+          email: "affiliates@test.com",
+          percentage: "1"
+        }
+      ]
     }
   }
 
@@ -123,7 +138,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:token].should == "4761d2e198ba6b60b45900a4d95482d5"
+        @response.transaction[:token].should == "756c0bb313b7e86caf59cf8f1ddfb281"
         @response.transaction[:status].should == :recovering
       end
 
@@ -149,7 +164,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns transaction data" do
-        @response.transaction[:token].should == "4761d2e198ba6b60b45900a4d95482d5"
+        @response.transaction[:token].should == "756c0bb313b7e86caf59cf8f1ddfb281"
         @response.transaction[:status].should == :recovering
       end
 

@@ -58,28 +58,36 @@ describe Tray::Checkout::TempTransaction do
     context 'when there is a cart created' do
       let(:transaction) { Tray::Checkout::TempTransaction.new(token) }
 
-      it 'updates the same cart' do
-        response = ''
-
+      before do
         params['token_transaction'] = token
 
         VCR.use_cassette 'model/update_cart' do
-          response = transaction.add_to_cart(params)
+          @response = transaction.add_to_cart(params)
         end
+      end
 
-        response.transaction[:token].should == token
+      it 'updates the same cart' do
+        @response.transaction[:token].should == token
+      end
+
+      it "adds quantity to cart's quantity"  do
+        @response.transaction[:products].first[:quantity].to_i.should > 1
       end
     end
 
     context "when there is no cart created" do
-      it 'creates a cart and stores the token' do
-        response = ''
-
+      before do
         VCR.use_cassette 'model/create_cart' do
-          response = transaction.add_to_cart(params)
+          @response = transaction.add_to_cart(params)
         end
+      end
 
-        response.transaction[:token].should_not == token
+      it 'creates a cart and stores the token' do
+        @response.transaction[:token].should_not == token
+      end
+
+      it "cart's quantity is the same as sent" do
+        @response.transaction[:products].first[:quantity].to_i.should == 1
       end
     end
   end
