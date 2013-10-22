@@ -11,7 +11,7 @@ module Tray
       end
 
       def cart_url
-        "http://checkout.sandbox.tray.com.br/payment/car/v1/#{@token}" if @token
+        "#{Tray::Checkout.cart_url}payment/car/v1/#{@token}" if @token
       end
 
       def add_to_cart(params)
