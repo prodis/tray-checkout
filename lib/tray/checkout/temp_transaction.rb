@@ -7,7 +7,7 @@ module Tray
       end
 
       def initialize(token=nil)
-        @token = token
+        @token = token || Tray::Checkout.token_account
       end
 
       def cart_url

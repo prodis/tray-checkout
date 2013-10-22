@@ -78,6 +78,23 @@ describe Tray::Checkout::Transaction do
   end
 
   describe "#get" do
+    context "token account is defined on the configuration" do
+      before :each do
+        Tray::Checkout.configure { |config| config.token_account = "8bfe5ddcb77207b" }
+        VCR.use_cassette 'model/get_success_boleto' do
+          @response = transaction.get("4761d2e198ba6b60b45900a4d95482d5")
+        end
+      end
+
+      it "returns success" do
+        @response.success?.should be_true
+      end
+
+      it "returns the transaction with only one parameter" do
+        @response.transaction[:token].should == "4761d2e198ba6b60b45900a4d95482d5"
+      end
+    end
+
     context "when transaction is found" do
       before :each do
         VCR.use_cassette 'model/get_success_boleto' do

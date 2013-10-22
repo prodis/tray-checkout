@@ -6,7 +6,8 @@ module Tray
         "#{Tray::Checkout.api_url}/v2/transactions/"
       end
 
-      def get(token, account)
+      def get(token, account=nil)
+        account ||= Tray::Checkout.token_account
         request("get_by_token", { token_account: account, token_transaction: token })
       end
 
