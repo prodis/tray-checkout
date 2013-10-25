@@ -1,28 +1,18 @@
 # encoding: UTF-8
 module Tray
   module Checkout
-    class Transaction
-      def get(token)
-        request("get_by_token", { token: token })
+    class Transaction < Tray::Checkout::BaseTransaction
+      def api_url
+        "#{Tray::Checkout.api_url}/v2/transactions/"
+      end
+
+      def get(token, account=nil)
+        account ||= Tray::Checkout.token_account
+        request("get_by_token", { token_account: account, token_transaction: token })
       end
 
       def create(params)
         request("pay_complete", parser.transaction_params(params))
-      end
-
-      private
-
-      def request(path, params)
-        xml = web_service.request!("#{Tray::Checkout.api_url}/#{path}", params)
-        parser.response(xml)
-      end
-
-      def web_service
-        @web_service ||= Tray::Checkout::WebService.new
-      end
-
-      def parser
-        @parser ||= Tray::Checkout::Parser.new
       end
     end
   end

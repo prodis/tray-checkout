@@ -30,7 +30,8 @@ module Tray
       end
 
       def create_response_hash
-        Hash.from_xml(@xml).symbolize_all_keys[:transaction]
+        hash = Hash.from_xml(@xml).symbolize_all_keys
+        hash[:response] || hash[:tmp_transaction]
       end
 
       def success?
@@ -57,7 +58,7 @@ module Tray
       end
 
       def create_data_response
-        data_response = response_hash[:data_response][:transaction]
+        data_response = response_hash[:data_response][:transaction] || response_hash[:data_response]
         transaction_map! data_response
         payment_map!     data_response
         customer_map!    data_response
@@ -66,29 +67,34 @@ module Tray
       end
 
       def transaction_map!(transaction)
-        transaction[:status] = TRANSACTION_STATUS.invert[transaction.delete(:status_id)]
-        transaction[:id] = transaction.delete(:transaction_id)
-        transaction[:token] = transaction.delete(:transaction_token)
-        transaction[:affiliates] = transaction.delete(:transaction_affiliates)
+        return {} unless transaction
+
+        transaction[:status] = TRANSACTION_STATUS.invert[transaction.delete(:status_id)] if transaction.has_key?(:status_id)
+        transaction[:id] = transaction.delete(:transaction_id) if transaction.has_key?(:transaction_id)
+        transaction[:token] = transaction.delete(:token_transaction) if transaction.has_key?(:token_transaction)
+        transaction[:products] = transaction.delete(:transaction_products) if transaction.has_key?(:transaction_products)
       end
 
       def payment_map!(transaction)
+        return {} if transaction.blank? || transaction[:payment].blank?
+
         payment = transaction[:payment]
-        payment[:method] = PAYMENT_METHOD.invert[payment.delete(:payment_method_id)]
-        payment[:method_name] = payment.delete(:payment_method_name)
-        payment[:price] = payment.delete(:price_payment)
-        payment[:response] = payment.delete(:payment_response)
-        payment[:url] = payment.delete(:url_payment)
+
+        payment[:method] = PAYMENT_METHOD.invert[payment.delete(:payment_method_id)] if payment.has_key?(:payment_method_id)
+        payment[:method_name] = payment.delete(:payment_method_name) if payment.has_key?(:payment_method_name)
+        payment[:price] = payment.delete(:price_payment) if payment.has_key?(:price_payment)
       end
 
       def customer_map!(transaction)
+        return {} if transaction.blank? || transaction[:customer].blank?
+
         customer = transaction[:customer]
 
         if customer[:contacts]
           customer[:contacts].each do |contact|
-            contact[:type] = CONTACT_TYPE.invert[contact.delete(:type_contact)]
-            contact[:id] = contact.delete(:contact_id)
-            contact[:number] = contact.delete(:value)
+            contact[:type] = CONTACT_TYPE.invert[contact.delete(:type_contact)] if contact.has_key?(:type_contact)
+            contact[:id] = contact.delete(:contact_id) if contact.has_key?(:contact_id)
+            contact[:number] = contact.delete(:value) if contact.has_key?(:value)
           end
         else
           customer[:contacts] = []
@@ -96,6 +102,8 @@ module Tray
       end
 
       def date_to_time!(hash)
+        return nil unless hash
+
         hash.each do |key, value|
           date_to_time!(value) if value.is_a?(Hash)
 

@@ -1,52 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<transaction>
+<response>
+  <error_response>
+    <errors type="array">
+      <error>
+        <message>Tipo de Contato não está incluído na lista</message>
+        <code>13</code>
+      </error>
+    </errors>
+  </error_response>
   <message_response>
     <message>error</message>
   </message_response>
-  <error_response>
-    <validation_errors type="array">
-      <validation_error>
-        <code>1</code>
-        <message_complete>Tipo n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.type_address</field>
-      </validation_error>
-      <validation_error>
-        <code>1</code>
-        <message_complete>Logradouro (Rua, Av, Travessa...) n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.street</field>
-      </validation_error>
-      <validation_error>
-        <code>1</code>
-        <message_complete>Cep n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.postal_code</field>
-      </validation_error>
-      <validation_error>
-        <code>1</code>
-        <message_complete>Cidade n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.city</field>
-      </validation_error>
-      <validation_error>
-        <code>1</code>
-        <message_complete>UF n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.state</field>
-      </validation_error>
-      <validation_error>
-        <code>1</code>
-        <message_complete>N&#250;mero, Lote n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.number</field>
-      </validation_error>
-      <validation_error>
-        <code>1</code>
-        <message_complete>Bairro n&#227;o pode ficar em branco</message_complete>
-        <message>n&#227;o pode ficar em branco</message>
-        <field>person_addresses.neighborhood</field>
-      </validation_error>
-    </validation_errors>
-  </error_response>
-</transaction>
+</response>

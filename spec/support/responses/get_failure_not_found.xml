@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<transaction>
+<response>
   <error_response>
     <errors type="array">
       <error>
-        <code>003042</code>
-        <message>Transa&#231;&#227;o n&#227;o encontrada</message>
+        <message>Token inv&aacute;lido ou n&atilde;o encontrado</message>
+        <code>001001</code>
       </error>
     </errors>
   </error_response>
   <message_response>
     <message>error</message>
   </message_response>
-</transaction>
+</response>

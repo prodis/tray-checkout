@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.sandbox.traycheckout.com.br//v2/transactions/pay_complete
+    body:
+      encoding: US-ASCII
+      string: affiliates%5B%5D%5Bemail%5D=affiliates%40test.com&affiliates%5B%5D%5Bpercentage%5D=1&customer%5Baddresses%5D%5B%5D%5Bcity%5D=S%C3%A3o+Paulo&customer%5Baddresses%5D%5B%5D%5Bcompletion%5D=apto+11&customer%5Baddresses%5D%5B%5D%5Bneighborhood%5D=Centro&customer%5Baddresses%5D%5B%5D%5Bnumber%5D=1001&customer%5Baddresses%5D%5B%5D%5Bpostal_code%5D=04001001&customer%5Baddresses%5D%5B%5D%5Bstate%5D=SP&customer%5Baddresses%5D%5B%5D%5Bstreet%5D=Av+Paulista&customer%5Baddresses%5D%5B%5D%5Btype%5D=billing&customer%5Baddresses%5D%5B%5D%5Btype_address%5D=B&customer%5Bbirth_date%5D=01%2F01%2F1900&customer%5Bcontacts%5D%5B%5D%5Bnumber_contact%5D=11998761234&customer%5Bcpf%5D=12312312312&customer%5Bemail%5D=emaildo%40cliente.com.br&customer%5Bname%5D=Nome+do+Cliente&payment%5Bcard_expdate_month%5D=01&payment%5Bcard_expdate_year%5D=2017&payment%5Bcard_name%5D=Nome+Impresso&payment%5Bcard_number%5D=4073020000000002&payment%5Bcvv%5D=123&payment%5Bmethod%5D=mastercard&payment%5Bpayment_method_id%5D=4&payment%5Bsplit%5D=12&token_account=8bfe5ddcb77207b&transaction%5Bavailable_payment_methods%5D=6&transaction%5Bfree%5D=Texto+Interno&transaction%5Border_number%5D=1234567&transaction%5Bprice_additional%5D=1.00&transaction%5Bprice_discount%5D=1.00&transaction%5Bshipping_price%5D=15.00&transaction%5Bshipping_type%5D=Sedex&transaction%5Bsub_store%5D=2&transaction%5Burl_notification%5D=http%3A%2F%2Fprodis.blog.br%2Ftray_notification&transaction_product%5B%5D%5Bcode%5D=123&transaction_product%5B%5D%5Bdescription%5D=Notebook+Branco&transaction_product%5B%5D%5Bextra%5D=Produto+novo&transaction_product%5B%5D%5Bprice_unit%5D=1999.99&transaction_product%5B%5D%5Bquantity%5D=1&transaction_product%5B%5D%5Bsku_code%5D=72628
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS40LjE=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        TW9uLCAyMSBPY3QgMjAxMyAxOToxOToyOCBHTVQ=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24veG1sOyBjaGFyc2V0PXV0Zi04
+      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
+      - !binary |-
+        Y2h1bmtlZA==
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "U3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "WC1VYS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "RXRhZw==":
+      - !binary |-
+        ImM0YTE5NWM2N2NlMWQ2ZWNhZTYxZjdhNjk3MDc0YTVmIg==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0wLCBwcml2YXRlLCBtdXN0LXJldmFsaWRhdGU=
+      !binary "WC1SZXF1ZXN0LUlk":
+      - !binary |-
+        NDZhYTUxZTEwZjE0YjJjYjcyNWNhNzMwNjBlZTA4MzU=
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC40MTQ1Nzk=
+      !binary "WC1SYWNrLUNhY2hl":
+      - !binary |-
+        aW52YWxpZGF0ZSwgcGFzcw==
+      !binary "WC1Qb3dlcmVkLUJ5":
+      - !binary |-
+        UGh1c2lvbiBQYXNzZW5nZXIgNC4wLjE0
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PHJlc3BvbnNlPgogIDxtZXNzYWdlX3Jlc3BvbnNlPgogICAgPG1lc3NhZ2U+
+        ZXJyb3I8L21lc3NhZ2U+CiAgPC9tZXNzYWdlX3Jlc3BvbnNlPgogIDxlcnJv
+        cl9yZXNwb25zZT4KICAgIDx2YWxpZGF0aW9uX2Vycm9ycyB0eXBlPSJhcnJh
+        eSI+CiAgICAgIDx2YWxpZGF0aW9uX2Vycm9yPgogICAgICAgIDxjb2RlPjEz
+        PC9jb2RlPgogICAgICAgIDxtZXNzYWdlPm7Do28gZXN0w6EgaW5jbHXDrWRv
+        IG5hIGxpc3RhPC9tZXNzYWdlPgogICAgICAgIDxmaWVsZD5wZXJzb25fY29u
+        dGFjdHMudHlwZV9jb250YWN0PC9maWVsZD4KICAgICAgICA8bWVzc2FnZV9j
+        b21wbGV0ZT5UaXBvIGRlIENvbnRhdG8gbsOjbyBlc3TDoSBpbmNsdcOtZG8g
+        bmEgbGlzdGE8L21lc3NhZ2VfY29tcGxldGU+CiAgICAgIDwvdmFsaWRhdGlv
+        bl9lcnJvcj4KICAgIDwvdmFsaWRhdGlvbl9lcnJvcnM+CiAgPC9lcnJvcl9y
+        ZXNwb25zZT4KPC9yZXNwb25zZT4K
+    http_version: 
+  recorded_at: Mon, 21 Oct 2013 19:19:28 GMT
+recorded_with: VCR 2.6.0
