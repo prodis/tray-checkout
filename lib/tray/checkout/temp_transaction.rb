@@ -11,11 +11,15 @@ module Tray
       end
 
       def cart_url
-        "#{Tray::Checkout.cart_url}payment/car/v1/#{@token}" if @token
+        "#{@response.transaction[:url_car]}#{@token_transaction}" if @token_transaction
       end
 
       def add_to_cart(params)
-        request("create", parser.transaction_params(params))
+        @response = request("create", parser.transaction_params(params))
+
+        @token_transaction = @response.transaction[:token] if @response.transaction
+
+        @response
       end
     end
   end

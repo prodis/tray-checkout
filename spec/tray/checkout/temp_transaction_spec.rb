@@ -36,12 +36,18 @@ describe Tray::Checkout::TempTransaction do
 
   describe "#cart_url" do
     context 'when there is a cart created' do
-      let(:transaction) { Tray::Checkout::TempTransaction.new(token) }
+      let(:transaction) { Tray::Checkout::TempTransaction.new(params[:token_account]) }
+
+      before do
+        VCR.use_cassette 'model/create_cart' do
+          @response = transaction.add_to_cart(params)
+        end
+      end
 
       it 'returns the URL' do
         url = transaction.cart_url
 
-        url.should == "http://checkout.sandbox.tray.com.br/payment/car/v1/#{token}"
+        url.should == "http://checkout.sandbox.tray.com.br/payment/car/v1/31d7b7f786b6aa5749e8358374b7068f"
       end
     end
 
