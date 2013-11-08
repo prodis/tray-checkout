@@ -176,7 +176,7 @@ You can create or update carts through the Tray::Checkout::TempTransaction class
 After creating a cart you can forward your client using the cart_url method:
 
   temp_transaction = Tray::Checkout::TempTransaction.new
-  temp_transaction.add_to_cart # => http://checkout.sandbox.tray.com.br/payment/car/v1/a906bf32cb59060dfc90769524f99d4a
+  temp_transaction.cart_url # => http://checkout.sandbox.tray.com.br/payment/car/v1/a906bf32cb59060dfc90769524f99d4a
 
 == Configurations
 

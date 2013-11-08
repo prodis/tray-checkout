@@ -21,14 +21,6 @@ module Tray
         end
       end
 
-      def cart_url
-        if environment == :production
-          "http://checkout.tray.com.br/"
-        else
-          "http://checkout.sandbox.tray.com.br/"
-        end
-      end
-
       def request_timeout
         (@request_timeout ||= DEFAULT_REQUEST_TIMEOUT).to_i
       end
