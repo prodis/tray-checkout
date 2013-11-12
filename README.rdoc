@@ -204,6 +204,13 @@ You can configure this timeout using <b>Tray::Checkout</b> module.
     config.request_timeout = 3  # It configures timeout to 3 seconds
   end
 
+=== HTTP Proxy
+If you need to use an HTTP proxy to make Tray Checkout API, configure the HTTP proxy URL on <b>Tray::Checkout</b> module.
+
+  Tray::Checkout.configure do |config|
+    config.proxy_url = "http://10.20.30.40:8888"
+  end
+
 === Log
 
 For default, each request to Tray Checkout API is logged to STDOUT, with <b>:info</b> log level, using the gem {LogMe}[http://github.com/prodis/log-me].

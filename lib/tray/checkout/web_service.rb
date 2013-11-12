@@ -16,21 +16,27 @@ module Tray
         response = http.request(request)
         log_response(response)
 
+        http.finish if http.started?
+
         response.body
       end
 
       private
 
       def build_http(uri)
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.open_timeout = Tray::Checkout.request_timeout
+        proxy_uri = URI.parse(Tray::Checkout.proxy_url)
 
-        if uri.ssl?
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        end
-
-        http
+        Net::HTTP.start(
+          uri.host,
+          uri.port,
+          proxy_uri.host,
+          proxy_uri.port,
+          nil,
+          nil,
+          use_ssl: uri.ssl?,
+          verify_mode: OpenSSL::SSL::VERIFY_NONE,
+          open_timeout: Tray::Checkout.request_timeout
+        )
       end
 
       def build_request(uri, params)

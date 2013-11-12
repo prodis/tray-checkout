@@ -59,4 +59,17 @@ describe Tray::Checkout do
       end
     end
   end
+
+  describe "#proxy_url" do
+    it "default is empty" do
+      Tray::Checkout.proxy_url.should == ""
+    end
+
+    context "when set proxy URL" do
+      it "returns proxy URL" do
+        Tray::Checkout.configure { |config| config.proxy_url = "http://10.20.30.40:8888" }
+        Tray::Checkout.proxy_url.should == "http://10.20.30.40:8888"
+      end
+    end
+  end
 end

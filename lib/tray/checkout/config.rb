@@ -8,6 +8,7 @@ module Tray
       attr_accessor :token_account
       attr_writer   :environment
       attr_writer   :request_timeout
+      attr_writer   :proxy_url
 
       def environment
         @environment ||= DEFAULT_ENVIRONMENT
@@ -23,6 +24,10 @@ module Tray
 
       def request_timeout
         (@request_timeout ||= DEFAULT_REQUEST_TIMEOUT).to_i
+      end
+
+      def proxy_url
+        @proxy_url ||= ""
       end
     end
   end
