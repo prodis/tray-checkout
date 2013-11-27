@@ -178,6 +178,33 @@ After creating a cart you can forward your client using the cart_url method:
   temp_transaction = Tray::Checkout::TempTransaction.new
   temp_transaction.cart_url # => http://checkout.sandbox.tray.com.br/payment/car/v1/a906bf32cb59060dfc90769524f99d4a
 
+
+=== Account
+
+You can check the existence as well as the info of an account through it's token using the Account class:
+
+  account = Tray::Checkout::Account.new(account_token)
+  account.valid?  # true/false
+  response = account.get_info
+
+  When account is found
+
+    response.people[:name]                  # test
+    response.people[:email]                 # test@test.com
+
+    response.service_contact[service_phone] # (55) 5555-5555
+    response.service_contact[email_service] # test@test.com
+
+    response.seconds_redirect               # seconds_redirect
+
+  When account is not found
+
+    response.success?               # => false
+    response.people                 # => nil
+    response.errors.first[:code]    # => "XXXXXX"
+    response.errors.first[:message] # => "<Error Message>"
+
+
 == Configurations
 
 === Environment
