@@ -187,22 +187,22 @@ You can check the existence as well as the info of an account through it's token
   account.valid?  # true/false
   response = account.get_info
 
-  When account is found
+When account is found
 
-    response.people[:name]                  # test
-    response.people[:email]                 # test@test.com
+  response.people[:name]                  # test
+  response.people[:email]                 # test@test.com
 
-    response.service_contact[service_phone] # (55) 5555-5555
-    response.service_contact[email_service] # test@test.com
+  response.service_contact[service_phone] # (55) 5555-5555
+  response.service_contact[email_service] # test@test.com
 
-    response.seconds_redirect               # seconds_redirect
+  response.seconds_redirect               # seconds_redirect
 
-  When account is not found
+When account is not found
 
-    response.success?               # => false
-    response.people                 # => nil
-    response.errors.first[:code]    # => "XXXXXX"
-    response.errors.first[:message] # => "<Error Message>"
+  response.success?               # => false
+  response.people                 # => nil
+  response.errors.first[:code]    # => "XXXXXX"
+  response.errors.first[:message] # => "<Error Message>"
 
 
 == Configurations
