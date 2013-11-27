@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Tray
   module Checkout
-    class TransactionParamsParser
+    class ParamsParser
       def initialize(params)
         @params = params.clone
       end

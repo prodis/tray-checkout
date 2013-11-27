@@ -15,7 +15,7 @@ module Tray
       end
 
       def add_to_cart(params)
-        @response = request("create", parser.transaction_params(params))
+        @response = request("create", parser.response_params(params))
 
         @token_transaction = @response.transaction[:token] if @response.transaction
 
