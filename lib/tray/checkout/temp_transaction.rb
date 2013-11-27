@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Tray
   module Checkout
-    class TempTransaction < Tray::Checkout::BaseTransaction
+    class TempTransaction < Tray::Checkout::BaseService
       def api_url
         "#{Tray::Checkout.api_url}/v1/tmp_transactions/"
       end

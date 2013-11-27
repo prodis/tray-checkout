@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Tray
   module Checkout
-    class Transaction < Tray::Checkout::BaseTransaction
+    class Transaction < Tray::Checkout::BaseService
       def api_url
         "#{Tray::Checkout.api_url}/v2/transactions/"
       end
@@ -12,7 +12,7 @@ module Tray
       end
 
       def create(params)
-        request("pay_complete", parser.transaction_params(params))
+        request("pay_complete", parser.response_params(params))
       end
     end
   end

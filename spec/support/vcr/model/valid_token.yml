@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.sandbox.traycheckout.com.br//api/people/get_seller_or_company
+    body:
+      encoding: US-ASCII
+      string: token_account=8bfe5ddcb77207b
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.4.1
+      Date:
+      - Tue, 26 Nov 2013 20:43:43 GMT
+      Content-Type:
+      - application/xml; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - ! '"3b86a0217ec7a3e770282c02699ff481"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 97dc4a30a04dda43e6569a4ac1828c19
+      X-Runtime:
+      - '16.021538'
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Powered-By:
+      - Phusion Passenger 4.0.14
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<people>\n  <data_response>\n
+        \   <contact_primary>08000059230</contact_primary>\n    <name>Vendedor Loja
+        Modelo </name>\n    <trade_name>Loja Modelo </trade_name>\n    <email>lojamodelo@tray.com.br</email>\n
+        \   <url_logo nil=\"true\"/>\n    <css_url>http://default.com/default.css</css_url>\n
+        \   <service_contact>\n      <service_phone>(14)3412-1377</service_phone>\n
+        \     <email_service>lojamodelo@tray.com.br</email_service>\n      <service_phone_status>true</service_phone_status>\n
+        \     <email_service_status>true</email_service_status>\n    </service_contact>\n
+        \   <seconds_redirect>\n      <seconds_redirect nil=\"true\"/>\n    </seconds_redirect>\n
+        \ </data_response>\n  <message_response>\n    <message>success</message>\n
+        \ </message_response>\n</people>\n"
+    http_version: 
+  recorded_at: Tue, 26 Nov 2013 20:43:40 GMT
+recorded_with: VCR 2.6.0
