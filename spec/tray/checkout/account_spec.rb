@@ -12,43 +12,13 @@ describe Tray::Checkout::Account do
     Tray::Checkout.environment = :production
   end
 
-  describe "#valid?" do
+  describe "#get_info_by_token" do
     context 'when token account is valid/exists' do
       let(:account) { Tray::Checkout::Account.new(token_account) }
 
       before do
         VCR.use_cassette 'model/valid_token' do
-          @response = account.valid?
-        end
-      end
-
-      it 'returns true' do
-        @response.should be_true
-      end
-    end
-
-    context "when token account is not valid/doesn't exists" do
-      let(:account) { Tray::Checkout::Account.new('4567') }
-
-      before do
-        VCR.use_cassette 'model/invalid_token' do
-          @response = account.valid?
-        end
-      end
-
-      it 'returns false' do
-        @response.should be_false
-      end
-    end
-  end
-
-  describe "#get_info" do
-    context 'when token account is valid/exists' do
-      let(:account) { Tray::Checkout::Account.new(token_account) }
-
-      before do
-        VCR.use_cassette 'model/valid_token' do
-          @response = account.get_info
+          @response = account.get_info_by_token
         end
       end
 
@@ -66,7 +36,7 @@ describe Tray::Checkout::Account do
 
       before do
         VCR.use_cassette 'model/invalid_token' do
-          @response = account.get_info
+          @response = account.get_info_by_token
         end
       end
 

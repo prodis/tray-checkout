@@ -10,11 +10,7 @@ module Tray
         @account = account || Tray::Checkout.token_account
       end
 
-      def valid?
-        get_info.success?
-      end
-
-      def get_info
+      def get_info_by_token
         request("get_seller_or_company", { token_account: @account })
       end
     end
