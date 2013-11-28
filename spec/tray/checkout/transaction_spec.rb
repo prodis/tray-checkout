@@ -79,8 +79,13 @@ describe Tray::Checkout::Transaction do
 
   describe "#get" do
     context "token account is defined on the configuration" do
-      before :each do
+      around do |example|
         Tray::Checkout.configure { |config| config.token_account = "8bfe5ddcb77207b" }
+        example.run
+        Tray::Checkout.configure { |config| config.token_account = nil }
+      end
+
+      before :each do
         VCR.use_cassette 'model/get_success_boleto' do
           @response = transaction.get("4761d2e198ba6b60b45900a4d95482d5")
         end
