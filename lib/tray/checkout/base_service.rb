@@ -2,11 +2,11 @@
 module Tray
   module Checkout
     class BaseService
-      def api_url
-        "#{Tray::Checkout.api_url}"
-      end
-
       protected
+
+      def api_url
+        raise NotImplementedError, "This method must be implemented in child classes."
+      end
 
       def request(path, params)
         xml = web_service.request!("#{api_url}#{path}", params)
