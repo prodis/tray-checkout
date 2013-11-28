@@ -181,13 +181,14 @@ After creating a cart you can forward your client using the cart_url method:
 
 === Account
 
-You can check the existence as well as the info of an account through it's token using the Account class:
+You can check the existence as well as the info of an account through its token using the Account class:
 
-  account = Tray::Checkout::Account.new(account_token)
-  account.valid?  # true/false
-  response = account.get_info
+  account = Tray::Checkout::Account.new
+  response = account.get_by_token("8bfe5ddcb77107b")
 
 When account is found
+
+  response.success? # => true
 
   response.people[:name]                  # test
   response.people[:email]                 # test@test.com
