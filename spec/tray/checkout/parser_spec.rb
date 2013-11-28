@@ -23,30 +23,30 @@ describe Tray::Checkout::Parser do
     end
   end
 
-  describe "#transaction_params" do
+  describe "#response_params" do
     before :each do
       @params = {
         token_account: "949u5uu9ef36f7u",
         customer: { name: "Pedro Bonamides", sex: :male },
         payment: { payment_method: :boleto_bancario }
       }
-      @transaction_params = {
+      @response_params = {
         token_account: "949u5uu9ef36f7u",
         customer: { name: "Pedro Bonamides", sex: :male, gender: "M" },
         payment: { payment_method: :boleto, payment_method_id: "6" }
       }
-      @transaction_params_parser = Tray::Checkout::TransactionParamsParser.new(@params)
-      Tray::Checkout::TransactionParamsParser.stub(:new).and_return(@transaction_params_parser)
+      @params_parser = Tray::Checkout::ParamsParser.new(@params)
+      Tray::Checkout::ParamsParser.stub(:new).and_return(@params_parser)
     end
 
     it "creates transaction params parser" do
-      Tray::Checkout::TransactionParamsParser.should_receive(:new).with(@params)
-      parser.transaction_params(@params)
+      Tray::Checkout::ParamsParser.should_receive(:new).with(@params)
+      parser.response_params(@params)
     end
 
     it "parses params" do
-      @transaction_params_parser.should_receive(:parse).and_return(@transaction_params)
-      parser.transaction_params(@params).should == @transaction_params
+      @params_parser.should_receive(:parse).and_return(@response_params)
+      parser.response_params(@params).should == @response_params
     end
   end
 end

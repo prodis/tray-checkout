@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Tray
   module Checkout
-    class BaseTransaction
+    class BaseService
       def api_url
         "#{Tray::Checkout.api_url}"
       end

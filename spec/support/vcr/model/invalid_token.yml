@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.sandbox.traycheckout.com.br//api/people/get_seller_or_company
+    body:
+      encoding: US-ASCII
+      string: token_account=4567
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS40LjE=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        VHVlLCAyNiBOb3YgMjAxMyAyMDo0Mzo1MiBHTVQ=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24veG1sOyBjaGFyc2V0PXV0Zi04
+      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
+      - !binary |-
+        Y2h1bmtlZA==
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "U3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "WC1VYS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjhlZTc2YWQ1MWRmOWFkMGY5ZTczOTM4Y2JiZmVhMzVmIg==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0wLCBwcml2YXRlLCBtdXN0LXJldmFsaWRhdGU=
+      !binary "WC1SZXF1ZXN0LUlk":
+      - !binary |-
+        ODJmOWIwMDk5ZWIwMmExY2Q5MTM4NTk4YTcyOTFmM2Q=
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC41MTQ4ODM=
+      !binary "WC1SYWNrLUNhY2hl":
+      - !binary |-
+        aW52YWxpZGF0ZSwgcGFzcw==
+      !binary "WC1Qb3dlcmVkLUJ5":
+      - !binary |-
+        UGh1c2lvbiBQYXNzZW5nZXIgNC4wLjE0
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHBlb3Bs
+        ZT4KICA8ZXJyb3JfcmVzcG9uc2U+CiAgICA8ZXJyb3JzIHR5cGU9ImFycmF5
+        Ij4KICAgICAgPGVycm9yPgogICAgICAgIDxtZXNzYWdlPlRva2VuIGludsOh
+        bGlkbyBvdSBuw6NvIGVuY29udHJhZG88L21lc3NhZ2U+CiAgICAgICAgPGNv
+        ZGU+MDAxMDAxPC9jb2RlPgogICAgICA8L2Vycm9yPgogICAgPC9lcnJvcnM+
+        CiAgPC9lcnJvcl9yZXNwb25zZT4KICA8bWVzc2FnZV9yZXNwb25zZT4KICAg
+        IDxtZXNzYWdlPmVycm9yPC9tZXNzYWdlPgogIDwvbWVzc2FnZV9yZXNwb25z
+        ZT4KPC9wZW9wbGU+Cg==
+    http_version: 
+  recorded_at: Tue, 26 Nov 2013 20:43:50 GMT
+recorded_with: VCR 2.6.0

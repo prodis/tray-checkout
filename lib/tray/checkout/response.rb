@@ -5,6 +5,9 @@ module Tray
       attr_accessor :transaction,
                     :payment,
                     :customer,
+                    :people,
+                    :service_contact,
+                    :seconds_redirect,
                     :success,
                     :errors
 

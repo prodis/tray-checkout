@@ -1,0 +1,23 @@
+<people>
+	<script id="tinyhippos-injected"/>
+	<data_response>
+		<contact_primary>08000059230</contact_primary>
+		<name>Vendedor Loja Modelo</name>
+		<trade_name>Loja Modelo</trade_name>
+		<email>lojamodelo@tray.com.br</email>
+		<url_logo nil="true"/>
+		<css_url>http://default.com/default.css</css_url>
+		<service_contact>
+			<service_phone>(14)3412-1377</service_phone>
+			<email_service>lojamodelo@tray.com.br</email_service>
+			<service_phone_status>true</service_phone_status>
+			<email_service_status>true</email_service_status>
+		</service_contact>
+		<seconds_redirect>
+			<seconds_redirect nil="true"/>
+		</seconds_redirect>
+	</data_response>
+	<message_response>
+		<message>success</message>
+	</message_response>
+</people>

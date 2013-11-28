@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Tray
   module Checkout
-    class TempTransaction < Tray::Checkout::BaseTransaction
+    class TempTransaction < Tray::Checkout::BaseService
       def api_url
         "#{Tray::Checkout.api_url}/v1/tmp_transactions/"
       end
@@ -15,7 +15,7 @@ module Tray
       end
 
       def add_to_cart(params)
-        @response = request("create", parser.transaction_params(params))
+        @response = request("create", parser.response_params(params))
 
         @token_transaction = @response.transaction[:token] if @response.transaction
 
