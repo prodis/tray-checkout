@@ -6,12 +6,8 @@ module Tray
         "#{Tray::Checkout.api_url}/api/people/"
       end
 
-      def initialize(account=nil)
-        @account = account || Tray::Checkout.token_account
-      end
-
-      def get_info_by_token
-        request("get_seller_or_company", { token_account: @account })
+      def get_by_token(token)
+        request("get_seller_or_company", { token_account: token || Tray::Checkout::token_account })
       end
     end
   end
