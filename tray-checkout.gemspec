@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = Gem::Requirement.new(">= 1.9.2")
 
   gem.add_dependency "activesupport", "~> 3.1"
-  gem.add_dependency "log-me"
+  gem.add_dependency "log-me", '0.0.9'
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec",   "~> 2.12"
