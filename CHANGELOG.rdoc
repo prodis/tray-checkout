@@ -1,3 +1,6 @@
+== Version 0.4.1
+- Update log-me gem version.
+
 == Version 0.2.0
 - Support to production environment.
 - Token account via configuration.
