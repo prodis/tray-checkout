@@ -41,6 +41,7 @@ describe Tray::Checkout::ParamsParser do
           shipping_type: "Sedex",
           shipping_price: 13.94,
           url_notification: "http://prodis.blog.br/tray_notification",
+          url_img: "http://prodis.net.br/images/prodis_150.gif",
           products: [
             { code: "LOGO-8278",
               quantity: 2,
@@ -72,6 +73,19 @@ describe Tray::Checkout::ParamsParser do
     let(:response_params) { parser.parse }
 
     describe "#parse" do
+      context "when transaction has image URL" do
+        it "keeps image URL parameter" do
+          response_params[:transaction][:url_img].should == params[:transaction][:url_img]
+        end
+      end
+
+      context "when image URL is nil" do
+        it "removes image URL parameter" do
+          params[:transaction][:url_img] = nil
+          response_params[:transaction].has_key?(:url_img).should eq false
+        end
+      end
+
       it "sets customer gender expect API value" do
         response_params[:customer][:gender].should == "M"
       end

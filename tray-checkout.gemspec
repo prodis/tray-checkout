@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "activesupport", "~> 3.1"
   gem.add_dependency "log-me", '0.0.9'
 
+  gem.add_development_dependency "pry"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec",   "~> 2.12"
   gem.add_development_dependency "webmock", "~> 1.9"
