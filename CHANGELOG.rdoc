@@ -1,3 +1,6 @@
+== Version 0.4.3
+- "url_img" parameter is in "product", not in "transaction".
+
 == Version 0.4.2
 - Avoid errors in TrayCheckout API when "url_img" parameter does not have a value.
 
