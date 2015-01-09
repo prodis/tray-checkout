@@ -8,7 +8,6 @@ module Tray
 
       def parse
         token_account! @params
-        transaction_map! @params
         customer_map! @params[:customer]
         payment_map!  @params[:payment]
         products_map! @params
@@ -19,14 +18,6 @@ module Tray
 
       def token_account!(params)
         params[:token_account] = Tray::Checkout.token_account if params[:token_account].nil?
-      end
-
-      def transaction_map!(params)
-        return unless params[:transaction]
-
-        if params[:transaction][:url_img].to_s.empty?
-          params[:transaction].delete(:url_img)
-        end
       end
 
       def customer_map!(customer)
@@ -63,7 +54,12 @@ module Tray
 
       def products_map!(params)
         return unless params[:transaction]
+
         params[:transaction_product] = params[:transaction].delete(:products)
+
+        params[:transaction_product].each do |product|
+          product.delete(:url_img) if product[:url_img].to_s.empty?
+        end
       end
     end
   end
