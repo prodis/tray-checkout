@@ -1,3 +1,6 @@
+== Version 0.4.2
+- Avoid errors in TrayCheckout API when "url_img" parameter does not have a value.
+
 == Version 0.4.1
 - Update log-me gem version.
 
