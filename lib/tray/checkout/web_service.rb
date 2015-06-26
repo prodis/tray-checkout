@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'active_support'
 require 'active_support/core_ext'
 require 'net/https'
 require 'uri'

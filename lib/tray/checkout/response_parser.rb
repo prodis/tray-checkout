@@ -1,5 +1,6 @@
 # encoding: UTF-8
-require 'active_support/core_ext'
+require 'active_support'
+require 'active_support/all'
 
 class Tray::Checkout::ResponseParser
   def self.transaction?(xml)
@@ -7,7 +8,7 @@ class Tray::Checkout::ResponseParser
   end
 
   def self.get_parser(xml)
-    Tray::Checkout::ResponseParser.transaction?(xml) ? 
+    Tray::Checkout::ResponseParser.transaction?(xml) ?
       Tray::Checkout::TransactionResponseParser.new(xml) :
       Tray::Checkout::AccountResponseParser.new(xml)
   end
