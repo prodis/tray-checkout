@@ -1,3 +1,7 @@
+== Version 0.4.4
+- Parse general errors.
+- Using ActiveSupport >= 3.1 version.
+
 == Version 0.4.3
 - "url_img" parameter is in "product", not in "transaction".
 
