@@ -14,6 +14,7 @@ def body_for(response)
        :create_success_boleto,
        :create_success_mastercard,
        :create_failure_validation_errors,
+       :create_failure_general_errors,
        :create_temp_transaction_with_token,
        :get_account_info
     read_file_for(response)

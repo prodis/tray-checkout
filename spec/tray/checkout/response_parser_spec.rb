@@ -52,6 +52,26 @@ describe Tray::Checkout::ResponseParser do
         end
       end
     end
+
+    context "with general error response" do
+      let(:xml) { body_for :create_failure_general_errors }
+      let(:parser) { Tray::Checkout::ResponseParser.new(xml) }
+      let(:response) { parser.parse }
+
+      it "does not return success" do
+        response.success?.should be false
+      end
+
+      context "returns error" do
+        { code: "058001",
+          message: "Revendedor inválido."
+        }.each do |param, value|
+          it param do
+            response.errors.first[param].should == value
+          end
+        end
+      end
+    end
   end
 
   describe("transaction?") do

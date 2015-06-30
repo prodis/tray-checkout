@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmp_transaction>
+  <message_response>
+    <message>error</message>
+  </message_response>
+  <error_response>
+    <general_errors type="array">
+      <general_error>
+        <code>058001</code>
+        <message>Revendedor inválido.</message>
+      </general_error>
+    </general_errors>
+  </error_response>
+</tmp_transaction>

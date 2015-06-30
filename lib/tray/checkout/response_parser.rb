@@ -7,7 +7,8 @@ class Tray::Checkout::ResponseParser
   end
 
   def self.get_parser(xml)
-    Tray::Checkout::ResponseParser.transaction?(xml) ? 
+    #TODO: Remove this POG, please!
+    Tray::Checkout::ResponseParser.transaction?(xml) ?
       Tray::Checkout::TransactionResponseParser.new(xml) :
       Tray::Checkout::AccountResponseParser.new(xml)
   end
@@ -63,6 +64,10 @@ class Tray::Checkout::ResponseParser
 
     if error_response[:validation_errors]
       error_response[:errors] = error_response.delete(:validation_errors)
+    end
+
+    if error_response[:general_errors]
+      error_response[:errors] = error_response.delete(:general_errors)
     end
 
     error_response[:errors]
