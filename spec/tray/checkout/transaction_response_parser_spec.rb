@@ -9,7 +9,7 @@ describe Tray::Checkout::TransactionResponseParser do
       let(:response) { parser.parse }
 
       it "returns success" do
-        response.success?.should be_true
+        response.success?.should be true
       end
 
       context "returns transaction" do
@@ -56,7 +56,7 @@ describe Tray::Checkout::TransactionResponseParser do
       let(:response) { parser.parse }
 
       it "returns success" do
-        response.success?.should be_true
+        response.success?.should be true
       end
 
       it "returns empty errors" do

@@ -6,7 +6,7 @@ describe Tray::Checkout::Response do
 
   describe ".new" do
     it "sets success to false" do
-      response.success?.should be_false
+      response.success?.should be false
     end
 
     it "sets errors to empty" do

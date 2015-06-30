@@ -23,7 +23,7 @@ describe Tray::Checkout::Account do
       end
 
       it 'response returns true' do
-        @response.success?.should be_true
+        @response.success?.should be true
       end
 
       it 'response has name attribute' do
@@ -43,7 +43,7 @@ describe Tray::Checkout::Account do
       end
 
       it 'response returns false' do
-        @response.success?.should be_false
+        @response.success?.should be false
       end
     end
   end

@@ -9,7 +9,7 @@ describe Tray::Checkout::ResponseParser do
       let(:response) { parser.parse }
 
       it "returns success" do
-        response.success?.should be_true
+        response.success?.should be true
       end
     end
 
@@ -19,7 +19,7 @@ describe Tray::Checkout::ResponseParser do
       let(:response) { parser.parse  }
 
       it "does not return success" do
-        response.success?.should be_false
+        response.success?.should be false
       end
 
       context "returns error" do
@@ -39,7 +39,7 @@ describe Tray::Checkout::ResponseParser do
       let(:response) { parser.parse  }
 
       it "does not return success" do
-        response.success?.should be_false
+        response.success?.should be false
       end
 
       context "returns error" do
@@ -59,7 +59,7 @@ describe Tray::Checkout::ResponseParser do
       let(:xml) { body_for :get_success_boleto }
 
       it "returns true" do
-        Tray::Checkout::ResponseParser.transaction?(xml).should be_true
+        Tray::Checkout::ResponseParser.transaction?(xml).should be true
       end
     end
 
@@ -67,7 +67,7 @@ describe Tray::Checkout::ResponseParser do
       let(:xml) { body_for :get_account_info }
 
       it "returns false" do
-        Tray::Checkout::ResponseParser.transaction?(xml).should be_false
+        Tray::Checkout::ResponseParser.transaction?(xml).should be false
       end
     end
   end

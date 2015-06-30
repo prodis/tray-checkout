@@ -92,7 +92,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns success" do
-        @response.success?.should be_true
+        @response.success?.should be true
       end
 
       it "returns the transaction with only one parameter" do
@@ -108,7 +108,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns success" do
-        @response.success?.should be_true
+        @response.success?.should be true
       end
 
       it "returns transaction data" do
@@ -134,7 +134,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "does not return success" do
-        @response.success?.should be_false
+        @response.success?.should be false
       end
 
       it "returns errors" do
@@ -156,7 +156,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns success" do
-        @response.success?.should be_true
+        @response.success?.should be true
       end
 
       it "returns transaction data" do
@@ -182,7 +182,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "returns success" do
-        @response.success?.should be_true
+        @response.success?.should be true
       end
 
       it "returns transaction data" do
@@ -210,7 +210,7 @@ describe Tray::Checkout::Transaction do
       end
 
       it "does not return success" do
-        @response.success?.should be_false
+        @response.success?.should be false
       end
 
       it "returns error" do
