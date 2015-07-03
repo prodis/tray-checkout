@@ -33,7 +33,7 @@ module Tray
           proxy_uri.port,
           nil,
           nil,
-          use_ssl: uri.ssl?,
+          use_ssl: uri.secure?,
           verify_mode: OpenSSL::SSL::VERIFY_NONE,
           open_timeout: Tray::Checkout.request_timeout
         )
